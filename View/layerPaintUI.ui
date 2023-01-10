@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>845</width>
+    <height>536</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>layerPaintUtil</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="dataTableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>381</width>
+      <height>471</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="imgLabel1">
+    <property name="geometry">
+     <rect>
+      <x>399</x>
+      <y>17</y>
+      <width>421</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>380</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>图片尺寸：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label2">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>380</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>宽</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label3">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>380</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>高</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label4">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>380</y>
+      <width>30</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>DPI</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="lineTypeComboBox">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>340</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string extracomment="连线类型">线型</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>实线 -</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>点虚线 :</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>破折线 --</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>点划线 -.</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>不画线 </string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="lineColorPushButton">
+    <property name="geometry">
+     <rect>
+      <x>485</x>
+      <y>340</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>连线颜色</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="selectFileButton">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>420</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>导入数据</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="previewPushButton">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>420</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>预览</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="savePushButton">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>420</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>保存</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="widthLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>515</x>
+      <y>380</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="heightLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>605</x>
+      <y>380</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="dpitLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>380</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="XComboBox">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>340</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>x轴</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="YComboBox">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>340</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>y轴</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QDoubleSpinBox" name="lineWidthDoubleSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>340</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;线宽&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lineWidthLabel">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>320</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;Adobe Arabic&quot;;</string>
+    </property>
+    <property name="text">
+     <string> 线 宽</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>845</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menulayerPaint">
+    <property name="title">
+     <string>layerPaint</string>
+    </property>
+   </widget>
+   <addaction name="menulayerPaint"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources>
+  <include location="uisource/imgSource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
