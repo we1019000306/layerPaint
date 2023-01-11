@@ -9,10 +9,17 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QApplication
 
 
 class Ui_MainWindow(object):
+    # 获取显示器分辨率大小
+
     def setupUi(self, MainWindow):
+        screenDesktop = QApplication.desktop()
+        screenRect = screenDesktop.screenGeometry()
+        screenHeight = int(screenRect.height())
+        screenWidth = int(screenRect.width())
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(845, 536)
         MainWindow.setStyleSheet("")
@@ -20,7 +27,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.dataTableWidget = QtWidgets.QTableWidget(self.centralwidget)
-        self.dataTableWidget.setGeometry(QtCore.QRect(10, 10, 381, 471))
+        self.dataTableWidget.setGeometry(QtCore.QRect(10, 10, screenWidth/4, screenHeight/3))
         self.dataTableWidget.setObjectName("dataTableWidget")
         self.dataTableWidget.setColumnCount(0)
         self.dataTableWidget.setRowCount(0)
