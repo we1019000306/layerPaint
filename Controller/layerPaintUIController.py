@@ -30,86 +30,86 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        # 获取显示器分辨率大小
-        screenDesktop = QApplication.desktop()
-        screenRect = screenDesktop.screenGeometry()
-        screenHeight = int(screenRect.height())
-        screenWidth = int(screenRect.width())
-        factor = screenWidth/self.width()
-        #print(factor)
-
-        self.resize(screenWidth,screenHeight)
-        self.dataTableWidget.resize(int(screenWidth/2)-100,int(screenHeight-100))
-
-        self.imgLabel1.resize(0,0)
-        self.imgLabel1.move(int(self.dataTableWidget.width() + self.dataTableWidget.rect().x() + ((screenWidth - self.dataTableWidget.width()*2  -self.dataTableWidget.rect().x())/2)),int(self.imgLabel1.y()))
-        #print(self.imgLabel1.y())
-
-        self.lineTypeComboBox.resize(int(self.lineTypeComboBox.width()*factor * 3/4),int(self.lineTypeComboBox.height()*factor*3/4))
-        self.lineTypeComboBox.move(self.imgLabel1.x(),self.imgLabel1.y()+self.lineWidthLabel.height()+self.imgLabel1.rect().height()+40+int(self.lineTypeComboBox.height()*factor*3/4))
-
-        self.lineColorPushButton.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
-        self.lineColorPushButton.move(self.lineTypeComboBox.x()+self.lineTypeComboBox.width()+int(20*factor),int(self.lineTypeComboBox.y()))
-
-        self.lineWidthDoubleSpinBox.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
-        self.lineWidthDoubleSpinBox.move(self.lineColorPushButton.x() + self.lineColorPushButton.width() + int(20 * factor),int(self.lineTypeComboBox.y()))
-        self.lineWidthDoubleSpinBox.setValue(1.00)
-
-        self.lineWidthLabel.resize(self.lineWidthDoubleSpinBox.width(),int(self.lineWidthDoubleSpinBox.height()*2/3))
-        self.lineWidthLabel.move(self.lineColorPushButton.x() + self.lineColorPushButton.width() + int(20 * factor),int(self.lineWidthDoubleSpinBox.y() - self.lineWidthLabel.height()))
-        self.lineWidthLabel.setAlignment(QtCore.Qt.AlignmentFlag(4))
-
-        self.XComboBox.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
-        self.XComboBox.move(self.lineWidthDoubleSpinBox.x() + self.lineWidthDoubleSpinBox.width() + int(20 * factor),int(self.lineWidthDoubleSpinBox.y()))
-
-        self.YComboBox.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
-        self.YComboBox.move(self.XComboBox.x() + self.XComboBox.width() + int(20 * factor), int(self.lineTypeComboBox.y()))
-
-        #label 图片尺寸：
-        self.label.resize(int(self.label.width()*factor),int(self.label.height()*factor))
-        self.label.move(self.lineTypeComboBox.x(),int(self.lineTypeComboBox.y()+self.lineTypeComboBox.height()+20*factor))
-
-        #label 宽
-        self.label2.resize(int(self.label2.width() * factor), int(self.label2.height() * factor))
-        self.label2.move(self.lineTypeComboBox.x()+self.label.width(),int(self.label.y()))
-
-        self.widthLineEdit.resize(int(self.widthLineEdit.width() * factor), int(self.widthLineEdit.height() * factor))
-        self.widthLineEdit.move(self.label2.x() + self.label2.width(),int(self.label.y()))
-        self.widthLineEdit.setText('1000')
-
-        #label 高
-        self.label3.resize(int(self.label3.width() * factor), int(self.label3.height() * factor))
-        self.label3.move(int(self.widthLineEdit.x() + self.widthLineEdit.width() + 10*factor),int(self.label.y()))
-
-        self.heightLineEdit.resize(int(self.heightLineEdit.width() * factor), int(self.heightLineEdit.height() * factor))
-        self.heightLineEdit.move(int(self.label3.x() + self.label3.width()),int(self.label.y()))
-        self.heightLineEdit.setText('500')
-
-        # label dpi
-        self.label4.resize(int(self.label4.width() * factor),int(self.label4.height() * factor))
-        self.label4.move(int(self.heightLineEdit.x() + self.heightLineEdit.width() + 10*factor),int(self.label.y()))
-
-        self.dpitLineEdit.resize(int(self.dpitLineEdit.width() * factor), int(self.dpitLineEdit.height() * factor))
-        self.dpitLineEdit.move(int(self.label4.x() + self.label4.width()),int(self.label.y()))
-        self.dpitLineEdit.setText('120')
-
-        self.selectFileButton.resize(int(self.selectFileButton.width() * factor), int(self.selectFileButton.height() * factor))
-        self.selectFileButton.move(int(self.label2.x()),int(screenHeight - 3*self.selectFileButton.height() - 20*factor))
-
-        self.previewPushButton.resize(int(self.previewPushButton.width() * factor), int(self.previewPushButton.height() * factor))
-        self.previewPushButton.move(int(self.selectFileButton.x() + self.selectFileButton.width() + 10 * factor), int(screenHeight - 3*self.selectFileButton.height() - 20*factor))
-
-        self.savePushButton.resize(int(self.savePushButton.width() * factor),int(self.savePushButton.height() * factor))
-        self.savePushButton.move(int(self.previewPushButton.x() + self.previewPushButton.width() + 10 * factor),int(screenHeight - 3*self.selectFileButton.height() - 20*factor))
+        # # 获取显示器分辨率大小
+        # screenDesktop = QApplication.desktop()
+        # screenRect = screenDesktop.screenGeometry()
+        # screenHeight = int(screenRect.height())
+        # screenWidth = int(screenRect.width())
+        # factor = screenWidth/self.width()
+        # #print(factor)
+        #
+        # self.resize(screenWidth,screenHeight)
+        # self.dataTableWidget_2.resize(int(screenWidth/2)-100,int(screenHeight-100))
+        #
+        # self.imgLabel1.resize(0,0)
+        # self.imgLabel1.move(int(self.dataTableWidget_2.width() + self.dataTableWidget_2.rect().x() + ((screenWidth - self.dataTableWidget_2.width()*2  -self.dataTableWidget_2.rect().x())/2)),int(self.imgLabel1.y()))
+        # #print(self.imgLabel1.y())
+        #
+        # self.lineTypeComboBox.resize(int(self.lineTypeComboBox.width()*factor * 3/4),int(self.lineTypeComboBox.height()*factor*3/4))
+        # self.lineTypeComboBox.move(self.imgLabel1.x(),self.imgLabel1.y()+self.lineWidthLabel.height()+self.imgLabel1.rect().height()+40+int(self.lineTypeComboBox.height()*factor*3/4))
+        #
+        # self.lineColorPushButton.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
+        # self.lineColorPushButton.move(self.lineTypeComboBox.x()+self.lineTypeComboBox.width()+int(20*factor),int(self.lineTypeComboBox.y()))
+        #
+        # self.lineWidthDoubleSpinBox.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
+        # self.lineWidthDoubleSpinBox.move(self.lineColorPushButton.x() + self.lineColorPushButton.width() + int(20 * factor),int(self.lineTypeComboBox.y()))
+        # self.lineWidthDoubleSpinBox.setValue(1.00)
+        #
+        # self.lineWidthLabel.resize(self.lineWidthDoubleSpinBox.width(),int(self.lineWidthDoubleSpinBox.height()*2/3))
+        # self.lineWidthLabel.move(self.lineColorPushButton.x() + self.lineColorPushButton.width() + int(20 * factor),int(self.lineWidthDoubleSpinBox.y() - self.lineWidthLabel.height()))
+        # self.lineWidthLabel.setAlignment(QtCore.Qt.AlignmentFlag(4))
+        #
+        # self.XComboBox.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
+        # self.XComboBox.move(self.lineWidthDoubleSpinBox.x() + self.lineWidthDoubleSpinBox.width() + int(20 * factor),int(self.lineWidthDoubleSpinBox.y()))
+        #
+        # self.YComboBox.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
+        # self.YComboBox.move(self.XComboBox.x() + self.XComboBox.width() + int(20 * factor), int(self.lineTypeComboBox.y()))
+        #
+        # #label 图片尺寸：
+        # self.label.resize(int(self.label.width()*factor),int(self.label.height()*factor))
+        # self.label.move(self.lineTypeComboBox.x(),int(self.lineTypeComboBox.y()+self.lineTypeComboBox.height()+20*factor))
+        #
+        # #label 宽
+        # self.label2.resize(int(self.label2.width() * factor), int(self.label2.height() * factor))
+        # self.label2.move(self.lineTypeComboBox.x()+self.label.width(),int(self.label.y()))
+        #
+        # self.widthLineEdit.resize(int(self.widthLineEdit.width() * factor), int(self.widthLineEdit.height() * factor))
+        # self.widthLineEdit.move(self.label2.x() + self.label2.width(),int(self.label.y()))
+        # self.widthLineEdit.setText('1000')
+        #
+        # #label 高
+        # self.label3.resize(int(self.label3.width() * factor), int(self.label3.height() * factor))
+        # self.label3.move(int(self.widthLineEdit.x() + self.widthLineEdit.width() + 10*factor),int(self.label.y()))
+        #
+        # self.heightLineEdit.resize(int(self.heightLineEdit.width() * factor), int(self.heightLineEdit.height() * factor))
+        # self.heightLineEdit.move(int(self.label3.x() + self.label3.width()),int(self.label.y()))
+        # self.heightLineEdit.setText('500')
+        #
+        # # label dpi
+        # self.label4.resize(int(self.label4.width() * factor),int(self.label4.height() * factor))
+        # self.label4.move(int(self.heightLineEdit.x() + self.heightLineEdit.width() + 10*factor),int(self.label.y()))
+        #
+        # self.dpitLineEdit.resize(int(self.dpitLineEdit.width() * factor), int(self.dpitLineEdit.height() * factor))
+        # self.dpitLineEdit.move(int(self.label4.x() + self.label4.width()),int(self.label.y()))
+        # self.dpitLineEdit.setText('120')
+        #
+        # self.selectFileButton.resize(int(self.selectFileButton.width() * factor), int(self.selectFileButton.height() * factor))
+        # self.selectFileButton.move(int(self.label2.x()),int(screenHeight - 3*self.selectFileButton.height() - 20*factor))
+        #
+        # self.previewPushButton.resize(int(self.previewPushButton.width() * factor), int(self.previewPushButton.height() * factor))
+        # self.previewPushButton.move(int(self.selectFileButton.x() + self.selectFileButton.width() + 10 * factor), int(screenHeight - 3*self.selectFileButton.height() - 20*factor))
+        #
+        # self.savePushButton.resize(int(self.savePushButton.width() * factor),int(self.savePushButton.height() * factor))
+        # self.savePushButton.move(int(self.previewPushButton.x() + self.previewPushButton.width() + 10 * factor),int(screenHeight - 3*self.selectFileButton.height() - 20*factor))
 
 
 
         #self.selectFileButton.setStyleSheet("border-image: url(" + getImgUrl(os.getcwd()) + "/uisource/fileSource.png);\n" "")
-        self.lineColorPushButton.clicked.connect(self.lineColorPushButtonClicked)
-        self.selectFileButton.clicked.connect(self.getFileOnClicked)
-        self.selectFileButton.clicked.connect(self.creat_table_show)
-        self.previewPushButton.clicked.connect(self.previewButtonClicked)
-        self.savePushButton.clicked.connect(self.savePushButtonClicked)
+        self.lineColorPushButton_3.clicked.connect(self.lineColorPushButtonClicked)
+        self.selectFileButton_2.clicked.connect(self.getFileOnClicked)
+        self.selectFileButton_2.clicked.connect(self.creat_table_show)
+        self.previewPushButton_2.clicked.connect(self.previewButtonClicked)
+        self.savePushButton_2.clicked.connect(self.savePushButtonClicked)
 
 
 
@@ -120,7 +120,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         #pix = QPixmap.fromImage(frame)
 
     def getFileOnClicked(self):
-        self.selectFileButton.setEnabled(False)
+        self.selectFileButton_2.setEnabled(False)
         self.thread_2 = Thread_2()
         self.thread_2._signal.connect(self.setSelectFileButtonEnable)
         self.thread_2.start()
@@ -164,9 +164,9 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
             ###===========读取表格，转换表格，============================================
 
             ###======================给tablewidget设置行列表头============================
-            self.dataTableWidget.setColumnCount(input_table_colunms)
-            self.dataTableWidget.setRowCount(input_table_rows)
-            self.dataTableWidget.setHorizontalHeaderLabels(input_table_header)
+            self.dataTableWidget_2.setColumnCount(input_table_colunms)
+            self.dataTableWidget_2.setRowCount(input_table_rows)
+            self.dataTableWidget_2.setHorizontalHeaderLabels(input_table_header)
             ###================遍历表格每个元素，同时添加到tablewidget中========================
             for i in range(input_table_rows):
                 input_table_rows_values = input_table.iloc[[i]]
@@ -182,14 +182,14 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                     input_table_items = str(input_table_items_list)
                     newItem = QTableWidgetItem(input_table_items)
                     newItem.setTextAlignment(4 | 128)
-                    self.dataTableWidget.setItem(i, j, newItem)
+                    self.dataTableWidget_2.setItem(i, j, newItem)
 
                     ###================遍历表格每个元素，同时添加到tablewidget中========================
 
                     # 刷新界面命令：
             #self.XComboBox.addItems(['1', '2', '3'])
-            self.XComboBox.addItems(myStringUtil.deleteBlankStringWithList(input_table_header))
-            self.YComboBox.addItems(myStringUtil.deleteBlankStringWithList(input_table_header))
+            self.XComboBox_2.addItems(myStringUtil.deleteBlankStringWithList(input_table_header))
+            self.YComboBox_2.addItems(myStringUtil.deleteBlankStringWithList(input_table_header))
 
             # self.XComboBox.adjustSize()
             # self.YComboBox.adjustSize()
@@ -198,9 +198,9 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
 
         else:
             if len(dataDictKey) > 0:
-                QMessageBox.information(self.previewPushButton, '提示！！', '你已取消更新数据源！！')
+                QMessageBox.information(self.previewPushButton_2, '提示！！', '你已取消更新数据源！！')
             else:
-                QMessageBox.information(self.previewPushButton, '提示！！', '你已取消导入数据源！！')
+                QMessageBox.information(self.previewPushButton_2, '提示！！', '你已取消导入数据源！！')
 
 
 
@@ -219,7 +219,6 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def lineColorPushButtonClicked(self):
         self.thread_5 = Thread_5()
-        self.thread_5._selectColorSignal.connect(self.setLineColorPushButtonEnable)
         self.thread_5.start()
         self.showDialog()
         pass
@@ -227,23 +226,23 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
     def previewButtonClicked(self):
        global dataDictList
        global dataDictKey
-       # self.dataTableWidget.item()
+       # self.dataTableWidget_2.item()
        self.thread_3 = Thread_3()
        self.thread_3._reloadUISignal.connect(self.setPreviewButtonEnable)
        self.thread_3.start()
 
        if 0 < len(dataDictKey):
            self.getDataFromTableWidget()
-           print(dataDictList[self.XComboBox.currentIndex()])
-           print(dataDictList[self.YComboBox.currentIndex()])
-           print(self.lineColorPushButton.text())
-           if self.lineColorPushButton.text() == '连线颜色':
-               self.lineColorPushButton.setText('#000000')
-               self.lineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
-           print(self.XComboBox.currentIndex())
+           print(dataDictList[self.XComboBox_2.currentIndex()])
+           print(dataDictList[self.YComboBox_2.currentIndex()])
+           print(self.lineColorPushButton_3.text())
+           if self.lineColorPushButton_3.text() == '连线颜色':
+               self.lineColorPushButton_3.setText('#000000')
+               self.lineColorPushButton_3.setStyleSheet('QWidget {background-color:#000000}')
+           print(self.XComboBox_2.currentIndex())
            #处理当未选择X轴或Y轴时默认的预览图
-           xDictList = [self.XComboBox.currentText()]
-           yDictList = [self.YComboBox.currentText()]
+           xDictList = [self.XComboBox_2.currentText()]
+           yDictList = [self.YComboBox_2.currentText()]
            for i in dataDictKey:
                xDictList.append(i)
                yDictList.append(i)
@@ -251,23 +250,34 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
            screenRect = screenDesktop.screenGeometry()
            screenHeight = int(screenRect.height())
            screenWidth = int(screenRect.width())
-           if not (myStringUtil.isNumber(self.widthLineEdit.text()) and myStringUtil.isNumber(self.heightLineEdit.text()) and myStringUtil.isNumber(self.dpitLineEdit.text())):
-               QMessageBox.information(self.previewPushButton,'警告!!!','请输入数字！！')
-           elif int(self.widthLineEdit.text()) > screenWidth +1000:
-               QMessageBox.information(self.previewPushButton, '警告!!!', ('图片宽度不可以大于屏幕宽度！！！\n提示当前屏幕为%d*%d！！！')%(screenWidth,screenHeight))
-           elif int(self.heightLineEdit.text()) > screenHeight+1000:
-               QMessageBox.information(self.previewPushButton, '警告!!!', ('图片宽度不可以大于屏幕高度！！！\n提示当前屏幕为%d*%d！！！')%(screenWidth,screenHeight))
-           elif int(self.dpitLineEdit.text()) <10:
-               QMessageBox.information(self.previewPushButton, '警告!!!','dpi至少大于10！！！')
+           if not (myStringUtil.isNumber(self.widthLineEdit_2.text())
+                   and myStringUtil.isNumber(self.heightLineEdit_2.text())
+                   and myStringUtil.isNumber(self.dpitLineEdit_2.text())):
+               QMessageBox.information(self.previewPushButton_2,'警告!!!','请输入数字！！')
+           elif int(self.widthLineEdit_2.text()) > screenWidth +1000:
+               QMessageBox.information(self.previewPushButton_2,
+                                       '警告!!!', ('图片宽度不可以大于屏幕宽度！！！\n提示当前屏幕为%d*%d！！！')%(screenWidth,screenHeight))
+           elif int(self.heightLineEdit_2.text()) > screenHeight+1000:
+               QMessageBox.information(self.previewPushButton_2,
+                                       '警告!!!', ('图片宽度不可以大于屏幕高度！！！\n提示当前屏幕为%d*%d！！！')%(screenWidth,screenHeight))
+           elif int(self.dpitLineEdit_2.text()) <10:
+               QMessageBox.information(self.previewPushButton_2,
+                                       '警告!!!','dpi至少大于10！！！')
            else:
-               drawPlotWithParameterInGui(dataDictList[self.XComboBox.currentIndex()], dataDictList[self.YComboBox.currentIndex()], xDictList[self.XComboBox.currentIndex()], yDictList[self.YComboBox.currentIndex()], self.currentLineStyle(self.lineTypeComboBox.currentIndex()), self.lineWidthDoubleSpinBox.text(), str(self.lineColorPushButton.text()), self.widthLineEdit.text(), self.heightLineEdit.text(), self.dpitLineEdit.text())
+               drawPlotWithParameterInGui(dataDictList[self.XComboBox_2.currentIndex()],
+                                          dataDictList[self.YComboBox_2.currentIndex()],
+                                          xDictList[self.XComboBox_2.currentIndex()],
+                                          yDictList[self.YComboBox_2.currentIndex()],
+                                          self.currentLineStyle(self.lineTypeComboBox_2.currentIndex()),
+                                          self.lineWidthDoubleSpinBox_2.text(),
+                                          str(self.lineColorPushButton_3.text()),
+                                          self.widthLineEdit_2.text(), self.heightLineEdit_2.text(),
+                                          self.dpitLineEdit_2.text())
                # 从本地读图
                pixmap = QPixmap(os.getcwd() + '\\preview.png')  # 按指定路径找到图片
                print(pixmap.size())
                if pixmap:
-                   self.imgLabel1.setPixmap(pixmap)  # 在label上显示图片
-                   self.imgLabel1.setScaledContents(False)  # 让图片自适应label大小
-
+                 print('!!!!!!!!!!')
 
                else:
                    pass
@@ -280,7 +290,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
 
 
        else:
-           QMessageBox.information(self.previewPushButton,'警告！！', '请先导入数据源！！')
+           QMessageBox.information(self.previewPushButton_2,'警告！！', '请先导入数据源！！')
 
 
     def savePushButtonClicked(self):
@@ -293,8 +303,8 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         col = QColorDialog.getColor()
         print(col.name(), "\n")
         if col.isValid():
-            self.lineColorPushButton.setStyleSheet('QWidget {background-color:%s}' % col.name())
-            self.lineColorPushButton.setText(col.name())
+            self.lineColorPushButton_3.setStyleSheet('QWidget {background-color:%s}' % col.name())
+            self.lineColorPushButton_3.setText(col.name())
 
     def currentLineStyle(self,currentIndex:int)->str:
         # 'solid'(默认) '-' 实线
@@ -321,9 +331,9 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         global dataDictKey
         global dataDictList
         dataDictList.append([0,1,2])
-        rowCount = self.dataTableWidget.rowCount()
-        columnCount = self.dataTableWidget.columnCount()
-        #print(self.dataTableWidget.item(0,0).text())
+        rowCount = self.dataTableWidget_2.rowCount()
+        columnCount = self.dataTableWidget_2.columnCount()
+        #print(self.dataTableWidget_2.item(0,0).text())
         #print(dataDictKey)
 
         i = 0
@@ -331,7 +341,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
             columnDataList = []
             j = 0
             while j < rowCount:
-                columnDataList.append(self.dataTableWidget.item(j, i).text())
+                columnDataList.append(self.dataTableWidget_2.item(j, i).text())
                 j = j + 1
             dataDictList.append(columnDataList)
             #print(dataDictList)
@@ -340,21 +350,21 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         #
         # for i in columnCount:
         #     for j in rowCount:
-        #        columnDataList = columnDataList.append(self.dataTableWidget.item(j,i))
+        #        columnDataList = columnDataList.append(self.dataTableWidget_2.item(j,i))
         #     dataDictList = dataDictList.append({i:columnDataList})
         print(dataDictList)
 
     def setSelectFileButtonEnable(self):
-        self.selectFileButton.setEnabled(True)
+        self.selectFileButton_2.setEnabled(True)
 
     def setLineColorPushButtonEnable(self):
-        self.lineColorPushButton.setEnabled(True)
+        self.lineColorPushButton_3.setEnabled(True)
 
     def setPreviewButtonEnable(self):
-        self.previewPushButton.setEnabled(True)
+        self.previewPushButton_2.setEnabled(True)
 
     def setSaveButtonEnable(self):
-        self.savePushButton.setEnabled(True)
+        self.savePushButton_2.setEnabled(True)
 
     def showPreviewView(self):
         MainWindow.setObjectName("MainWindow")
@@ -370,7 +380,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
             fig.savefig(fdir, bbox_inches='tight')
             print(fdir)
         else:
-            QMessageBox.information(self.savePushButton, '警告！！', '你还未绘制图片！！')
+            QMessageBox.information(self.savePushButton_2, '警告！！', '你还未绘制图片！！')
 
 
 
