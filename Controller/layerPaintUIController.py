@@ -10,7 +10,10 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QFileDialog, QTableWidgetItem, QColorDialog, QMessageBox, QDialog, QLabel
 from PyQt5.Qt import QThread,QMutex,pyqtSignal
 import time
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtWidgets,QtGui
+
+
+from LMYUntils.myStringUtil import getImgUrl
 from View.layerPaintUI import Ui_MainWindow
 import sys
 import pandas as pd
@@ -103,13 +106,17 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         # self.savePushButton.move(int(self.previewPushButton.x() + self.previewPushButton.width() + 10 * factor),int(screenHeight - 3*self.selectFileButton.height() - 20*factor))
 
 
-
-        #self.selectFileButton.setStyleSheet("border-image: url(" + getImgUrl(os.getcwd()) + "/uisource/fileSource.png);\n" "")
-        self.lineColorPushButton_3.clicked.connect(self.lineColorPushButtonClicked)
-        self.selectFileButton_2.clicked.connect(self.getFileOnClicked)
-        self.selectFileButton_2.clicked.connect(self.creat_table_show)
-        self.previewPushButton_2.clicked.connect(self.previewButtonClicked)
-        self.savePushButton_2.clicked.connect(self.savePushButtonClicked)
+        # print("border-image: url(" + getImgUrl(os.getcwd()) + "/uisource/fileSource.png);\n" "")
+        # os.chdir("..")
+        # print(getImgUrl(os.getcwd()) + "/uisource/fileSource.png;\n")
+        #
+        # self.selectFileButton.setIcon(QtGui.QIcon(getImgUrl(os.getcwd()) + "/uisource/fileSource.png"))
+        # self.selectFileButton.setIconSize(QtCore.QSize(20, 20))
+        self.lineColorPushButton.clicked.connect(self.lineColorPushButtonClicked)
+        self.selectFileButton.clicked.connect(self.getFileOnClicked)
+        self.selectFileButton.clicked.connect(self.creat_table_show)
+        self.previewPushButton.clicked.connect(self.previewButtonClicked)
+        self.savePushButton.clicked.connect(self.savePushButtonClicked)
 
 
 
@@ -120,7 +127,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         #pix = QPixmap.fromImage(frame)
 
     def getFileOnClicked(self):
-        self.selectFileButton_2.setEnabled(False)
+        self.selectFileButton.setEnabled(False)
         self.thread_2 = Thread_2()
         self.thread_2._signal.connect(self.setSelectFileButtonEnable)
         self.thread_2.start()
@@ -150,6 +157,10 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         global dataDictList
         dataDictList.clear()
         dataDictKey.clear()
+        self.XComboBox.clear()
+        self.YComboBox.clear()
+        # self.XComboBox.addItem('x轴')
+        # self.YComboBox.addItem('y轴')
         ###===========读取表格，转换表格，===========================================
         if  path_openfile_name != '':
             input_table = pd.read_excel(path_openfile_name)
@@ -164,9 +175,9 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
             ###===========读取表格，转换表格，============================================
 
             ###======================给tablewidget设置行列表头============================
-            self.dataTableWidget_2.setColumnCount(input_table_colunms)
-            self.dataTableWidget_2.setRowCount(input_table_rows)
-            self.dataTableWidget_2.setHorizontalHeaderLabels(input_table_header)
+            self.dataTableWidget.setColumnCount(input_table_colunms)
+            self.dataTableWidget.setRowCount(input_table_rows)
+            self.dataTableWidget.setHorizontalHeaderLabels(input_table_header)
             ###================遍历表格每个元素，同时添加到tablewidget中========================
             for i in range(input_table_rows):
                 input_table_rows_values = input_table.iloc[[i]]
@@ -182,14 +193,15 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                     input_table_items = str(input_table_items_list)
                     newItem = QTableWidgetItem(input_table_items)
                     newItem.setTextAlignment(4 | 128)
-                    self.dataTableWidget_2.setItem(i, j, newItem)
+                    self.dataTableWidget.setItem(i, j, newItem)
 
                     ###================遍历表格每个元素，同时添加到tablewidget中========================
 
                     # 刷新界面命令：
             #self.XComboBox.addItems(['1', '2', '3'])
-            self.XComboBox_2.addItems(myStringUtil.deleteBlankStringWithList(input_table_header))
-            self.YComboBox_2.addItems(myStringUtil.deleteBlankStringWithList(input_table_header))
+
+            self.XComboBox.addItems(myStringUtil.deleteBlankStringWithList(input_table_header))
+            self.YComboBox.addItems(myStringUtil.deleteBlankStringWithList(input_table_header))
 
             # self.XComboBox.adjustSize()
             # self.YComboBox.adjustSize()
@@ -198,9 +210,11 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
 
         else:
             if len(dataDictKey) > 0:
-                QMessageBox.information(self.previewPushButton_2, '提示！！', '你已取消更新数据源！！')
+                QMessageBox.information(self.previewPushButton,
+                                        '提示！！', '你已取消更新数据源！！')
             else:
-                QMessageBox.information(self.previewPushButton_2, '提示！！', '你已取消导入数据源！！')
+                QMessageBox.information(self.previewPushButton,
+                                        '提示！！', '你已取消导入数据源！！')
 
 
 
@@ -233,16 +247,16 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
 
        if 0 < len(dataDictKey):
            self.getDataFromTableWidget()
-           print(dataDictList[self.XComboBox_2.currentIndex()])
-           print(dataDictList[self.YComboBox_2.currentIndex()])
-           print(self.lineColorPushButton_3.text())
-           if self.lineColorPushButton_3.text() == '连线颜色':
-               self.lineColorPushButton_3.setText('#000000')
-               self.lineColorPushButton_3.setStyleSheet('QWidget {background-color:#000000}')
-           print(self.XComboBox_2.currentIndex())
+           print(dataDictList[self.XComboBox.currentIndex()])
+           print(dataDictList[self.YComboBox.currentIndex()])
+           print(self.lineColorPushButton.text())
+           if self.lineColorPushButton.text() == '连线颜色':
+               self.lineColorPushButton.setText('#000000')
+               self.lineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
+           print(self.XComboBox.currentIndex())
            #处理当未选择X轴或Y轴时默认的预览图
-           xDictList = [self.XComboBox_2.currentText()]
-           yDictList = [self.YComboBox_2.currentText()]
+           xDictList = [self.XComboBox.currentText()]
+           yDictList = [self.YComboBox.currentText()]
            for i in dataDictKey:
                xDictList.append(i)
                yDictList.append(i)
@@ -250,29 +264,37 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
            screenRect = screenDesktop.screenGeometry()
            screenHeight = int(screenRect.height())
            screenWidth = int(screenRect.width())
-           if not (myStringUtil.isNumber(self.widthLineEdit_2.text())
-                   and myStringUtil.isNumber(self.heightLineEdit_2.text())
-                   and myStringUtil.isNumber(self.dpitLineEdit_2.text())):
-               QMessageBox.information(self.previewPushButton_2,'警告!!!','请输入数字！！')
-           elif int(self.widthLineEdit_2.text()) > screenWidth +1000:
-               QMessageBox.information(self.previewPushButton_2,
-                                       '警告!!!', ('图片宽度不可以大于屏幕宽度！！！\n提示当前屏幕为%d*%d！！！')%(screenWidth,screenHeight))
-           elif int(self.heightLineEdit_2.text()) > screenHeight+1000:
-               QMessageBox.information(self.previewPushButton_2,
-                                       '警告!!!', ('图片宽度不可以大于屏幕高度！！！\n提示当前屏幕为%d*%d！！！')%(screenWidth,screenHeight))
-           elif int(self.dpitLineEdit_2.text()) <10:
-               QMessageBox.information(self.previewPushButton_2,
-                                       '警告!!!','dpi至少大于10！！！')
+
+           if self.widthLineEdit.text() == '' or self.heightLineEdit.text() =='' or self.dpitLineEdit.text() =='':
+               QMessageBox.information(self.previewPushButton,
+                                       '警告!!!', '宽度、高度和dpi不能为空值!!!')
+           elif not (myStringUtil.isNumber(self.widthLineEdit.text())
+                   and myStringUtil.isNumber(self.heightLineEdit.text())
+                   and myStringUtil.isNumber(self.dpitLineEdit.text())):
+               QMessageBox.information(self.previewPushButton,
+                                       '警告!!!','请输入数字！！')
+           elif int(self.widthLineEdit.text()) > screenWidth +1000:
+               QMessageBox.information(self.previewPushButton,
+                                       '警告!!!',
+                                       ('图片宽度不可以大于屏幕宽度！！！\n提示当前屏幕为%d*%d！！！')%(screenWidth,screenHeight))
+           elif int(self.heightLineEdit.text()) > screenHeight+1000:
+               QMessageBox.information(self.previewPushButton,
+                                       '警告!!!',
+                                       ('图片宽度不可以大于屏幕高度！！！\n提示当前屏幕为%d*%d！！！')%(screenWidth,screenHeight))
+           elif int(self.dpitLineEdit.text()) <10:
+               QMessageBox.information(self.previewPushButton,
+                                       '警告!!!','dpi至少大于10!!!')
            else:
-               drawPlotWithParameterInGui(dataDictList[self.XComboBox_2.currentIndex()],
-                                          dataDictList[self.YComboBox_2.currentIndex()],
-                                          xDictList[self.XComboBox_2.currentIndex()],
-                                          yDictList[self.YComboBox_2.currentIndex()],
-                                          self.currentLineStyle(self.lineTypeComboBox_2.currentIndex()),
-                                          self.lineWidthDoubleSpinBox_2.text(),
-                                          str(self.lineColorPushButton_3.text()),
-                                          self.widthLineEdit_2.text(), self.heightLineEdit_2.text(),
-                                          self.dpitLineEdit_2.text())
+               print(dataDictList)
+               drawPlotWithParameterInGui(dataDictList[self.XComboBox.currentIndex()],
+                                          dataDictList[self.YComboBox.currentIndex()],
+                                          xDictList[self.XComboBox.currentIndex()+1],
+                                          yDictList[self.YComboBox.currentIndex()+1],
+                                          self.currentLineStyle(self.lineTypeComboBox.currentIndex()),
+                                          self.lineWidthDoubleSpinBox.text(),
+                                          str(self.lineColorPushButton.text()),
+                                          self.widthLineEdit.text(), self.heightLineEdit.text(),
+                                          self.dpitLineEdit.text())
                # 从本地读图
                pixmap = QPixmap(os.getcwd() + '\\preview.png')  # 按指定路径找到图片
                print(pixmap.size())
@@ -290,7 +312,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
 
 
        else:
-           QMessageBox.information(self.previewPushButton_2,'警告！！', '请先导入数据源！！')
+           QMessageBox.information(self.previewPushButton,'警告！！', '请先导入数据源！！')
 
 
     def savePushButtonClicked(self):
@@ -303,8 +325,8 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         col = QColorDialog.getColor()
         print(col.name(), "\n")
         if col.isValid():
-            self.lineColorPushButton_3.setStyleSheet('QWidget {background-color:%s}' % col.name())
-            self.lineColorPushButton_3.setText(col.name())
+            self.lineColorPushButton.setStyleSheet('QWidget {background-color:%s}' % col.name())
+            self.lineColorPushButton.setText(col.name())
 
     def currentLineStyle(self,currentIndex:int)->str:
         # 'solid'(默认) '-' 实线
@@ -330,18 +352,18 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
     def getDataFromTableWidget(self):
         global dataDictKey
         global dataDictList
-        dataDictList.append([0,1,2])
-        rowCount = self.dataTableWidget_2.rowCount()
-        columnCount = self.dataTableWidget_2.columnCount()
+        # dataDictList.append([0,1,2])
+        rowCount = self.dataTableWidget.rowCount()
+        columnCount = self.dataTableWidget.columnCount()
         #print(self.dataTableWidget_2.item(0,0).text())
         #print(dataDictKey)
-
+        print()
         i = 0
         while i < columnCount:
             columnDataList = []
             j = 0
             while j < rowCount:
-                columnDataList.append(self.dataTableWidget_2.item(j, i).text())
+                columnDataList.append(self.dataTableWidget.item(j, i).text())
                 j = j + 1
             dataDictList.append(columnDataList)
             #print(dataDictList)
@@ -355,16 +377,16 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         print(dataDictList)
 
     def setSelectFileButtonEnable(self):
-        self.selectFileButton_2.setEnabled(True)
+        self.selectFileButton.setEnabled(True)
 
     def setLineColorPushButtonEnable(self):
-        self.lineColorPushButton_3.setEnabled(True)
+        self.lineColorPushButton.setEnabled(True)
 
     def setPreviewButtonEnable(self):
-        self.previewPushButton_2.setEnabled(True)
+        self.previewPushButton.setEnabled(True)
 
     def setSaveButtonEnable(self):
-        self.savePushButton_2.setEnabled(True)
+        self.savePushButton.setEnabled(True)
 
     def showPreviewView(self):
         MainWindow.setObjectName("MainWindow")
@@ -376,45 +398,98 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         global figList
         if len(figList) > 0:
             fig = figList[0]
-            fdir, ftype = QFileDialog.getSaveFileName(self, "Save Image", "./", "Image Files (*.jpg)")
+            fdir, ftype = QFileDialog.getSaveFileName(self,
+                                                      "Save Image",
+                                                      "./",
+                                                      "Image Files (*.jpg)")
             fig.savefig(fdir, bbox_inches='tight')
             print(fdir)
         else:
-            QMessageBox.information(self.savePushButton_2, '警告！！', '你还未绘制图片！！')
+            QMessageBox.information(self.savePushButton,
+                                    '警告！！',
+                                    '你还未绘制图片！！')
 
 
 
 
-def drawPlotWithParameterInGui(xArray:list,yArray:list,xTitle:str,yTitle:str,lineStyle:str,lineWidth:str,lineColor:str,picWidth:str,picHeight:str,picDPI:str):
+def drawPlotWithParameterInGui(xArray:list,
+                               yArray:list,
+                               xTitle:str,
+                               yTitle:str,
+                               lineStyle:str,
+                               lineWidth:str,
+                               lineColor:str,
+                               picWidth:str,
+                               picHeight:str,
+                               picDPI:str):
     global figLi
 
     figList.clear()
     #plt.figure(figsize=(float(picWidth)/float(picDPI), float(picHeight)/float(picDPI)), dpi=float(picDPI))
     #plt.figure(dpi=float(picDPI))
-    plt.figure(figsize=(int(float(picWidth)/float(picDPI)), int(float(picHeight)/float(picDPI))), dpi=int(picDPI))
+    plt.figure(figsize=(int(float(picWidth)/float(picDPI)),
+                        int(float(picHeight)/float(picDPI))),
+               dpi=int(picDPI))
 
     plt.rcParams['font.sans-serif'] = ['SimHei']
     plt.rcParams['axes.unicode_minus'] = False
-
-    xArray = [round(float(i)) for i in xArray]
-    yArray = [round(float(i)) for i in yArray]
-
-    x = np.array(xArray)
-    y = np.array(yArray)
+    xNoNoneArray = []
+    yNoNoneArray = []
+    # xArray = [round(float(i)) for i in xArray]
+    print(xArray)
+    for i in xArray:
+        try:
+            xNoNoneArray.append(round(float(i)))
+        except:
+            print('x轴存在无法转换为数字的项目！！！')
+            xNoNoneArray.append(0)
+        else:
+            print('当前转化成功！！！')
+        finally:
+            print('全部转化成功！！！')
+    for n in yArray:
+        try:
+            yNoNoneArray.append(round(float(n)))
+        except:
+            yNoNoneArray.append(0.0)
+            print('由于参数为非数字已强制转为0.0')
+        else:
+            print('当前转化成功！！！')
+        finally:
+            print('全部转化成功！！！')
+    print(xNoNoneArray)
+    print(yNoNoneArray)
+    x = np.array(xNoNoneArray)
+    y = np.array(yNoNoneArray)
 
     plt.subplot(1,1,1)
-    plt.plot(x, y,color=lineColor,linewidth = lineWidth,linestyle = lineStyle)
+    plt.plot(x,
+             y,
+             color=lineColor,
+             linewidth = lineWidth,
+             linestyle = lineStyle)
 
-    maxX = max(xArray)
-    minX = min(xArray)
-    maxY = max(yArray)
-    minY = min(yArray)
+    maxX = max(xNoNoneArray)
+    minX = min(xNoNoneArray)
+    maxY = max(yNoNoneArray)
+    minY = min(yNoNoneArray)
     print(maxX)
-    plt.xticks(np.arange(0, (maxX + myArangeUtil.caculateUnitStep(maxX, minX)), step=myArangeUtil.caculateUnitStep(maxX, minX)),np.arange(0, (maxX + myArangeUtil.caculateUnitStep(maxX, minX)), step=myArangeUtil.caculateUnitStep(maxX, minX)))
+    plt.xticks(np.arange(0,
+                         (maxX + myArangeUtil.caculateUnitStep(maxX, minX)),
+                         step=myArangeUtil.caculateUnitStep(maxX, minX)),
+               np.arange(0, (maxX + myArangeUtil.caculateUnitStep(maxX, minX)),
+                         step=myArangeUtil.caculateUnitStep(maxX, minX)))
     #plt.yticks(np.linspace(0,maxY,yUnitNum))
-    plt.yticks(np.arange(0, (maxY + myArangeUtil.caculateUnitStep(maxY,minY)), step = myArangeUtil.caculateUnitStep(maxY,minY)),np.arange(0, (maxY + myArangeUtil.caculateUnitStep(maxY,minY)), step = myArangeUtil.caculateUnitStep(maxY,minY)))
+    plt.yticks(np.arange(0,
+                         (maxY + myArangeUtil.caculateUnitStep(maxY,minY)),
+                         step = myArangeUtil.caculateUnitStep(maxY,minY)),
+               np.arange(0,
+                         (maxY + myArangeUtil.caculateUnitStep(maxY,minY)),
+                         step = myArangeUtil.caculateUnitStep(maxY,minY)))
     #plt.xticks(rotation = '90')
     #plt.yticks(rotation='90')
+    print(xTitle)
+    print(yTitle)
     plt.xlabel(xlabel=(myStringUtil.superscriptNumberWithString(xTitle)))
     plt.ylabel(ylabel=(myStringUtil.superscriptNumberWithString(yTitle)))
     ax = plt.gca()

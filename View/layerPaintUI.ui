@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>535</width>
-    <height>621</height>
+    <width>728</width>
+    <height>803</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -39,6 +39,41 @@
     <item row="0" column="0">
      <widget class="QFrame" name="frame">
       <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0" colspan="3">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="1">
+        <widget class="QTableWidget" name="dataTableWidget"/>
+       </item>
+       <item row="1" column="2" rowspan="2">
+        <spacer name="horizontalSpacer_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item row="1" column="0" rowspan="2">
         <spacer name="horizontalSpacer_3">
          <property name="orientation">
@@ -69,83 +104,8 @@
          <property name="bottomMargin">
           <number>6</number>
          </property>
-         <item row="1" column="3">
-          <widget class="QDoubleSpinBox" name="lineWidthDoubleSpinBox_2">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;线宽&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="3">
-          <widget class="QLineEdit" name="heightLineEdit_2">
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="5">
-          <widget class="QPushButton" name="savePushButton_2">
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
-           </property>
-           <property name="text">
-            <string>保存</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLineEdit" name="widthLineEdit_2">
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0" colspan="2">
-          <spacer name="horizontalSpacer_10">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
-           </property>
-           <property name="text">
-            <string>图片尺寸：</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="5">
-          <widget class="QComboBox" name="YComboBox_2">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>20</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>y轴</string>
-            </property>
-           </item>
-          </widget>
-         </item>
          <item row="1" column="0">
-          <widget class="QComboBox" name="lineTypeComboBox_2">
+          <widget class="QComboBox" name="lineTypeComboBox">
            <property name="styleSheet">
             <string notr="true">font: 14pt &quot;Adobe Arabic&quot;;</string>
            </property>
@@ -182,7 +142,7 @@
           </widget>
          </item>
          <item row="0" column="3">
-          <widget class="QLabel" name="lineWidthLabel_2">
+          <widget class="QLabel" name="lineWidthLabel">
            <property name="styleSheet">
             <string notr="true">font: 75 12pt &quot;Adobe Arabic&quot;;</string>
            </property>
@@ -191,28 +151,8 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="2" colspan="2">
-          <widget class="QPushButton" name="selectFileButton_2">
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
-           </property>
-           <property name="text">
-            <string>导入数据</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label2_2">
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
-           </property>
-           <property name="text">
-            <string>宽</string>
-           </property>
-          </widget>
-         </item>
          <item row="2" column="4">
-          <widget class="QLabel" name="label4_2">
+          <widget class="QLabel" name="label4">
            <property name="styleSheet">
             <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
            </property>
@@ -221,18 +161,8 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="1" colspan="2">
-          <widget class="QPushButton" name="lineColorPushButton_3">
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
-           </property>
-           <property name="text">
-            <string>连线颜色</string>
-           </property>
-          </widget>
-         </item>
          <item row="1" column="4">
-          <widget class="QComboBox" name="XComboBox_2">
+          <widget class="QComboBox" name="XComboBox">
            <property name="enabled">
             <bool>true</bool>
            </property>
@@ -242,8 +172,17 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="styleSheet">
             <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToMinimumContentsLength</enum>
            </property>
            <item>
             <property name="text">
@@ -252,8 +191,140 @@
            </item>
           </widget>
          </item>
+         <item row="1" column="5">
+          <widget class="QComboBox" name="YComboBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>20</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+           </property>
+           <property name="minimumContentsLength">
+            <number>10</number>
+           </property>
+           <item>
+            <property name="text">
+             <string>y轴</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="widthLineEdit">
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="4">
+          <widget class="QPushButton" name="previewPushButton">
+           <property name="minimumSize">
+            <size>
+             <width>25</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Adobe Arabic</family>
+             <pointsize>14</pointsize>
+             <weight>9</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+           </property>
+           <property name="text">
+            <string>预览</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../uisource/preview.png</normaloff>../uisource/preview.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>25</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QLineEdit" name="heightLineEdit">
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label">
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+           </property>
+           <property name="text">
+            <string>图片尺寸：</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" colspan="2">
+          <widget class="QPushButton" name="lineColorPushButton">
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+           </property>
+           <property name="text">
+            <string>连线颜色</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label2">
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+           </property>
+           <property name="text">
+            <string>宽</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="4">
+          <widget class="QLineEdit" name="dpitLineEdit">
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="2">
+          <spacer name="horizontalSpacer_10">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
          <item row="2" column="3">
-          <widget class="QLabel" name="label3_2">
+          <widget class="QLabel" name="label3">
            <property name="styleSheet">
             <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
            </property>
@@ -262,61 +333,107 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="4">
-          <widget class="QLineEdit" name="dpitLineEdit_2">
+         <item row="1" column="3">
+          <widget class="QDoubleSpinBox" name="lineWidthDoubleSpinBox">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;线宽&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="styleSheet">
             <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
            </property>
           </widget>
          </item>
-         <item row="4" column="4">
-          <widget class="QPushButton" name="previewPushButton_2">
+         <item row="4" column="5">
+          <widget class="QPushButton" name="savePushButton">
+           <property name="minimumSize">
+            <size>
+             <width>25</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Adobe Arabic</family>
+             <pointsize>14</pointsize>
+             <weight>9</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
            </property>
            <property name="text">
-            <string>预览</string>
+            <string>保存</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../uisource/save.png</normaloff>../uisource/save.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>21</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <property name="autoExclusive">
+            <bool>false</bool>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QPushButton" name="selectFileButton">
+           <property name="minimumSize">
+            <size>
+             <width>25</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>100</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="acceptDrops">
+            <bool>false</bool>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;</string>
+           </property>
+           <property name="text">
+            <string>导入数据</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../uisource/importData.png</normaloff>../uisource/importData.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>25</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+           <property name="default">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
         </layout>
        </item>
-       <item row="1" column="1">
-        <widget class="QTableWidget" name="dataTableWidget_2"/>
-       </item>
-       <item row="1" column="2" rowspan="2">
-        <spacer name="horizontalSpacer_7">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>10</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="0" column="0" colspan="3">
-        <spacer name="verticalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="3" column="0" colspan="3">
+       <item row="4" column="0" colspan="3">
         <spacer name="verticalSpacer_4">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -342,7 +459,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>535</width>
+     <width>728</width>
      <height>23</height>
     </rect>
    </property>
