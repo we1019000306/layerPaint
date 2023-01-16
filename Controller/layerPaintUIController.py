@@ -117,7 +117,8 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         self.selectFileButton.clicked.connect(self.creat_table_show)
         self.previewPushButton.clicked.connect(self.previewButtonClicked)
         self.savePushButton.clicked.connect(self.savePushButtonClicked)
-
+        self.XComboBox.activated[str].connect(self.XComboBoxValueChanged)
+        self.YComboBox.activated[str].connect(self.YComboBoxValueChanged)
 
 
         # np数组生成的图
@@ -286,14 +287,34 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                                        '警告!!!','dpi至少大于10!!!')
            else:
                print(dataDictList)
-               drawPlotWithParameterInGui(dataDictList[self.XComboBox.currentIndex()],
-                                          dataDictList[self.YComboBox.currentIndex()],
-                                          xDictList[self.XComboBox.currentIndex()+1],
-                                          yDictList[self.YComboBox.currentIndex()+1],
+               xNoNoneArray,yNoNoneArray = handlerUnlegalData(dataDictList[self.XComboBox.currentIndex()],
+                                  dataDictList[self.YComboBox.currentIndex()])
+               xMax = max(xNoNoneArray)
+               xMin = min(xNoNoneArray)
+               yMax = max(yNoNoneArray)
+               yMin = min(yNoNoneArray)
+
+               xStep = myArangeUtil.caculateUnitStep(xMax, xMin)
+               yStep = myArangeUtil.caculateUnitStep(yMax,yMin)
+               print(xMax)
+               print(yMax)
+               print(xStep)
+               print(yStep)
+               drawPlotWithParameterInGui(xNoNoneArray,
+                                          myStringUtil.superscriptNumberWithString(self.XTitleTextEdit.toPlainText()),
+                                          xMax,
+                                          xMin,
+                                          xStep,
+                                          yNoNoneArray,
+                                          myStringUtil.superscriptNumberWithString(self.YTitleTextEdit.toPlainText()),
+                                          yMax,
+                                          yMin,
+                                          yStep,
                                           self.currentLineStyle(self.lineTypeComboBox.currentIndex()),
                                           self.lineWidthDoubleSpinBox.text(),
                                           str(self.lineColorPushButton.text()),
-                                          self.widthLineEdit.text(), self.heightLineEdit.text(),
+                                          self.widthLineEdit.text(),
+                                          self.heightLineEdit.text(),
                                           self.dpitLineEdit.text())
                # 从本地读图
                pixmap = QPixmap(os.getcwd() + '\\preview.png')  # 按指定路径找到图片
@@ -309,8 +330,6 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                previewDialogController.previewDialog.setPreviewImg(pixmap)
                previewDialogController.previewDialog.show()
 
-
-
        else:
            QMessageBox.information(self.previewPushButton,'警告！！', '请先导入数据源！！')
 
@@ -320,6 +339,12 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         self.thread_4._savePictureSignal.connect(self.setSaveButtonEnable)
         self.thread_4.start()
         self.savePicture()
+
+    def XComboBoxValueChanged(self):
+        print('X轴改变了！！！')
+
+    def YComboBoxValueChanged(self):
+        print('Y轴改变了！！！')
 
     def showDialog(self):
         col = QColorDialog.getColor()
@@ -410,29 +435,8 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                                     '你还未绘制图片！！')
 
 
-
-
-def drawPlotWithParameterInGui(xArray:list,
-                               yArray:list,
-                               xTitle:str,
-                               yTitle:str,
-                               lineStyle:str,
-                               lineWidth:str,
-                               lineColor:str,
-                               picWidth:str,
-                               picHeight:str,
-                               picDPI:str):
-    global figLi
-
-    figList.clear()
-    #plt.figure(figsize=(float(picWidth)/float(picDPI), float(picHeight)/float(picDPI)), dpi=float(picDPI))
-    #plt.figure(dpi=float(picDPI))
-    plt.figure(figsize=(int(float(picWidth)/float(picDPI)),
-                        int(float(picHeight)/float(picDPI))),
-               dpi=int(picDPI))
-
-    plt.rcParams['font.sans-serif'] = ['SimHei']
-    plt.rcParams['axes.unicode_minus'] = False
+def handlerUnlegalData(xArray:list,
+                       yArray:list):
     xNoNoneArray = []
     yNoNoneArray = []
     # xArray = [round(float(i)) for i in xArray]
@@ -457,10 +461,40 @@ def drawPlotWithParameterInGui(xArray:list,
             print('当前转化成功！！！')
         finally:
             print('全部转化成功！！！')
-    print(xNoNoneArray)
-    print(yNoNoneArray)
-    x = np.array(xNoNoneArray)
-    y = np.array(yNoNoneArray)
+    return xNoNoneArray,yNoNoneArray
+
+
+def drawPlotWithParameterInGui(xArray:list,
+                               xTitle:str,
+                               xMax:int,
+                               xMin:int,
+                               xStep:int,
+                               yArray:list,
+                               yTitle:str,
+                               yMax:int,
+                               yMin:int,
+                               yStep:int,
+                               lineStyle:str,
+                               lineWidth:str,
+                               lineColor:str,
+                               picWidth:str,
+                               picHeight:str,
+                               picDPI:str):
+    global figLi
+
+    figList.clear()
+    #plt.figure(figsize=(float(picWidth)/float(picDPI), float(picHeight)/float(picDPI)), dpi=float(picDPI))
+    #plt.figure(dpi=float(picDPI))
+    plt.figure(figsize=(int(float(picWidth)/float(picDPI)),
+                        int(float(picHeight)/float(picDPI))),
+               dpi=int(picDPI))
+
+    plt.rcParams['font.sans-serif'] = ['SimHei']
+    plt.rcParams['axes.unicode_minus'] = False
+
+
+    x = np.array(xArray)
+    y = np.array(yArray)
 
     plt.subplot(1,1,1)
     plt.plot(x,
@@ -469,29 +503,24 @@ def drawPlotWithParameterInGui(xArray:list,
              linewidth = lineWidth,
              linestyle = lineStyle)
 
-    maxX = max(xNoNoneArray)
-    minX = min(xNoNoneArray)
-    maxY = max(yNoNoneArray)
-    minY = min(yNoNoneArray)
-    print(maxX)
     plt.xticks(np.arange(0,
-                         (maxX + myArangeUtil.caculateUnitStep(maxX, minX)),
-                         step=myArangeUtil.caculateUnitStep(maxX, minX)),
-               np.arange(0, (maxX + myArangeUtil.caculateUnitStep(maxX, minX)),
-                         step=myArangeUtil.caculateUnitStep(maxX, minX)))
+                         (xMax + myArangeUtil.caculateUnitStep(xMax, xMin)),
+                         step=xStep),
+               np.arange(0, (xMax + myArangeUtil.caculateUnitStep(xMax, xMin)),
+                         step=xStep))
     #plt.yticks(np.linspace(0,maxY,yUnitNum))
     plt.yticks(np.arange(0,
-                         (maxY + myArangeUtil.caculateUnitStep(maxY,minY)),
-                         step = myArangeUtil.caculateUnitStep(maxY,minY)),
+                         (yMax + myArangeUtil.caculateUnitStep(yMax,yMin)),
+                         step=yStep),
                np.arange(0,
-                         (maxY + myArangeUtil.caculateUnitStep(maxY,minY)),
-                         step = myArangeUtil.caculateUnitStep(maxY,minY)))
+                         (yMax + myArangeUtil.caculateUnitStep(yMax,yMin)),
+                         step=yStep))
     #plt.xticks(rotation = '90')
     #plt.yticks(rotation='90')
     print(xTitle)
     print(yTitle)
-    plt.xlabel(xlabel=(myStringUtil.superscriptNumberWithString(xTitle)))
-    plt.ylabel(ylabel=(myStringUtil.superscriptNumberWithString(yTitle)))
+    plt.xlabel(xlabel=xTitle)
+    plt.ylabel(ylabel=yTitle)
     ax = plt.gca()
     ax.set_ylim(0)
     ax.set_xlim(0)
