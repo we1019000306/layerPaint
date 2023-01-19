@@ -114,7 +114,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         # self.selectFileButton.setIconSize(QtCore.QSize(20, 20))
         self.lineColorPushButton.clicked.connect(self.lineColorPushButtonClicked)
         self.selectFileButton.clicked.connect(self.getFileOnClicked)
-        self.selectFileButton.clicked.connect(self.creat_table_show)
+        self.selectFileButton.clicked.connect(self.loadBaseData)
         self.previewPushButton.clicked.connect(self.previewButtonClicked)
         self.savePushButton.clicked.connect(self.savePushButtonClicked)
         self.XComboBox.activated[str].connect(self.XComboBoxValueChanged)
@@ -152,7 +152,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         # if exam_excel[0] != '':
         #     self.view.set_excel_edit_line(exam_excel[0])
         #     print(exam_excel[0])
-    def creat_table_show(self):
+    def loadBaseData(self):
         global dataDictKey
         global path_openfile_name
         global dataDictList
@@ -203,18 +203,51 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
 
             self.XComboBox.addItems(myStringUtil.deleteBlankStringWithList(input_table_header))
             self.YComboBox.addItems(myStringUtil.deleteBlankStringWithList(input_table_header))
+            #计算出建议的最大x、y分别的最大值，最小值和步长
+            if 0 < len(dataDictKey):
+                self.getDataFromTableWidget()
+                print(dataDictList[self.XComboBox.currentIndex()])
+                print(dataDictList[self.YComboBox.currentIndex()])
+                print(self.lineColorPushButton.text())
+                if self.lineColorPushButton.text() == '连线颜色':
+                    self.lineColorPushButton.setText('#000000')
+                    self.lineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
+                print(self.XComboBox.currentIndex())
+                # 处理当未选择X轴或Y轴时默认的预览图
+                xDictList = [self.XComboBox.currentText()]
+                yDictList = [self.YComboBox.currentText()]
+                for i in dataDictKey:
+                    xDictList.append(i)
+                    yDictList.append(i)
+            xArray = dataDictList[self.XComboBox.currentIndex()]
+            yArray = dataDictList[self.YComboBox.currentIndex()]
 
+            xMax = float(max(xArray))
+            xMin = float(min(xArray))
+            yMax = float(max(yArray))
+            yMin = float(min(yArray))
+            xStep = myArangeUtil.caculateUnitStep(xMax, xMin)
+            yStep = myArangeUtil.caculateUnitStep(yMax, yMin)
+            self.MaxXLineEdit.setText(str(xMax))
+            self.MinXLineEdit.setText(str(xMin))
+            self.XStepLineEdit.setText(str(xStep))
+            self.MaxYLineEdit.setText(str(yMax))
+            self.MinYLineEdit.setText(str(yMin))
+            self.YStepLineEdit.setText(str(yStep))
             # self.XComboBox.adjustSize()
             # self.YComboBox.adjustSize()
+
+            #图片名称
+            #self.pictureNameLineEdit.setText()
             QApplication.processEvents()
 
 
         else:
             if len(dataDictKey) > 0:
-                QMessageBox.information(self.previewPushButton,
+                QMessageBox.information(MainWindow,
                                         '提示！！', '你已取消更新数据源！！')
             else:
-                QMessageBox.information(self.previewPushButton,
+                QMessageBox.information(MainWindow,
                                         '提示！！', '你已取消导入数据源！！')
 
 
@@ -241,26 +274,12 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
     def previewButtonClicked(self):
        global dataDictList
        global dataDictKey
-       # self.dataTableWidget_2.item()
+
        self.thread_3 = Thread_3()
        self.thread_3._reloadUISignal.connect(self.setPreviewButtonEnable)
        self.thread_3.start()
 
-       if 0 < len(dataDictKey):
-           self.getDataFromTableWidget()
-           print(dataDictList[self.XComboBox.currentIndex()])
-           print(dataDictList[self.YComboBox.currentIndex()])
-           print(self.lineColorPushButton.text())
-           if self.lineColorPushButton.text() == '连线颜色':
-               self.lineColorPushButton.setText('#000000')
-               self.lineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
-           print(self.XComboBox.currentIndex())
-           #处理当未选择X轴或Y轴时默认的预览图
-           xDictList = [self.XComboBox.currentText()]
-           yDictList = [self.YComboBox.currentText()]
-           for i in dataDictKey:
-               xDictList.append(i)
-               yDictList.append(i)
+       if(len(dataDictList)>0):
            screenDesktop = QApplication.desktop()
            screenRect = screenDesktop.screenGeometry()
            screenHeight = int(screenRect.height())
@@ -289,10 +308,10 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                print(dataDictList)
                xNoNoneArray,yNoNoneArray = handlerUnlegalData(dataDictList[self.XComboBox.currentIndex()],
                                   dataDictList[self.YComboBox.currentIndex()])
-               xMax = max(xNoNoneArray)
-               xMin = min(xNoNoneArray)
-               yMax = max(yNoNoneArray)
-               yMin = min(yNoNoneArray)
+               xMax = float(max(xNoNoneArray))
+               xMin = float(min(xNoNoneArray))
+               yMax = float(max(yNoNoneArray))
+               yMin = float(min(yNoNoneArray))
 
                xStep = myArangeUtil.caculateUnitStep(xMax, xMin)
                yStep = myArangeUtil.caculateUnitStep(yMax,yMin)
@@ -331,8 +350,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                previewDialogController.previewDialog.show()
 
        else:
-           QMessageBox.information(self.previewPushButton,'警告！！', '请先导入数据源！！')
-
+           QMessageBox.information(MainWindow,'警告！！', '请先导入数据源！！')
 
     def savePushButtonClicked(self):
         self.thread_4 = Thread_4()
@@ -430,7 +448,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
             fig.savefig(fdir, bbox_inches='tight')
             print(fdir)
         else:
-            QMessageBox.information(self.savePushButton,
+            QMessageBox.information(MainWindow,
                                     '警告！！',
                                     '你还未绘制图片！！')
 
@@ -446,7 +464,7 @@ def handlerUnlegalData(xArray:list,
             xNoNoneArray.append(round(float(i)))
         except:
             print('x轴存在无法转换为数字的项目！！！')
-            xNoNoneArray.append(0)
+            xNoNoneArray.append(0.0)
         else:
             print('当前转化成功！！！')
         finally:
@@ -466,13 +484,13 @@ def handlerUnlegalData(xArray:list,
 
 def drawPlotWithParameterInGui(xArray:list,
                                xTitle:str,
-                               xMax:int,
-                               xMin:int,
+                               xMax:float,
+                               xMin:float,
                                xStep:int,
                                yArray:list,
                                yTitle:str,
-                               yMax:int,
-                               yMin:int,
+                               yMax:float,
+                               yMin:float,
                                yStep:int,
                                lineStyle:str,
                                lineWidth:str,

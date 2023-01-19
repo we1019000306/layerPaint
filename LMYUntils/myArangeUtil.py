@@ -1,7 +1,7 @@
 import math
 
 #------------------------计算等差数列的公差-------------------------------------
-def caculateUnitStep(maxNum:int,minNum:int)->int:
+def caculateUnitStep(maxNum:float,minNum:float)->float:
     # maxNum = int(maxNum)
     # minNum = int(minNum)
     if (maxNum / 1000) % 10 > 1:

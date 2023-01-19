@@ -37,6 +37,7 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.frame = QtWidgets.QFrame(self.centralwidget)
         self.frame.setStyleSheet("")
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.frame)
         self.gridLayout_4.setObjectName("gridLayout_4")
@@ -44,43 +45,31 @@ class Ui_MainWindow(object):
         self.gridLayout_6.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.gridLayout_6.setContentsMargins(6, 6, 6, 6)
         self.gridLayout_6.setObjectName("gridLayout_6")
-        self.label3 = QtWidgets.QLabel(self.frame)
-        self.label3.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 0px solid #000")
-        self.label3.setObjectName("label3")
-        self.gridLayout_6.addWidget(self.label3, 4, 3, 1, 1)
-        self.label_2 = QtWidgets.QLabel(self.frame)
-        font = QtGui.QFont()
-        font.setFamily("Adobe Arabic")
-        font.setPointSize(14)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(9)
-        self.label_2.setFont(font)
-        self.label_2.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 0px solid #000")
-        self.label_2.setObjectName("label_2")
-        self.gridLayout_6.addWidget(self.label_2, 2, 0, 1, 1)
-        self.lineEdit_7 = QtWidgets.QLineEdit(self.frame)
-        self.lineEdit_7.setMinimumSize(QtCore.QSize(0, 50))
-        self.lineEdit_7.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+        self.label_6 = QtWidgets.QLabel(self.frame)
+        self.label_6.setObjectName("label_6")
+        self.gridLayout_6.addWidget(self.label_6, 4, 5, 1, 1)
+        self.lineTypeComboBox = QtWidgets.QComboBox(self.frame)
+        self.lineTypeComboBox.setMinimumSize(QtCore.QSize(0, 30))
+        self.lineTypeComboBox.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
 "color:#000;\n"
 "border: 1px solid #000")
-        self.lineEdit_7.setObjectName("lineEdit_7")
-        self.gridLayout_6.addWidget(self.lineEdit_7, 5, 5, 1, 1)
-        self.YStepLineEdit = QtWidgets.QLineEdit(self.frame)
-        self.YStepLineEdit.setMinimumSize(QtCore.QSize(0, 50))
-        self.YStepLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+        self.lineTypeComboBox.setObjectName("lineTypeComboBox")
+        self.lineTypeComboBox.addItem("")
+        self.lineTypeComboBox.addItem("")
+        self.lineTypeComboBox.addItem("")
+        self.lineTypeComboBox.addItem("")
+        self.lineTypeComboBox.addItem("")
+        self.lineTypeComboBox.addItem("")
+        self.gridLayout_6.addWidget(self.lineTypeComboBox, 1, 0, 1, 1)
+        self.widthLineEdit = QtWidgets.QLineEdit(self.frame)
+        self.widthLineEdit.setMinimumSize(QtCore.QSize(0, 30))
+        self.widthLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
 "color:#000;\n"
 "border: 1px solid #000")
-        self.YStepLineEdit.setObjectName("YStepLineEdit")
-        self.gridLayout_6.addWidget(self.YStepLineEdit, 3, 6, 1, 1)
+        self.widthLineEdit.setObjectName("widthLineEdit")
+        self.gridLayout_6.addWidget(self.widthLineEdit, 5, 1, 1, 1)
         self.label = QtWidgets.QLabel(self.frame)
         self.label.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
@@ -88,67 +77,19 @@ class Ui_MainWindow(object):
 "border: 0px solid #000")
         self.label.setObjectName("label")
         self.gridLayout_6.addWidget(self.label, 4, 0, 1, 1)
-        self.MinYLineEdit = QtWidgets.QLineEdit(self.frame)
-        self.MinYLineEdit.setMinimumSize(QtCore.QSize(0, 50))
-        self.MinYLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 1px solid #000")
-        self.MinYLineEdit.setObjectName("MinYLineEdit")
-        self.gridLayout_6.addWidget(self.MinYLineEdit, 3, 5, 1, 1)
-        spacerItem = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_6.addItem(spacerItem, 0, 5, 1, 1)
-        self.lineWidthDoubleSpinBox = QtWidgets.QDoubleSpinBox(self.frame)
-        self.lineWidthDoubleSpinBox.setMinimumSize(QtCore.QSize(0, 50))
-        self.lineWidthDoubleSpinBox.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 1px solid #000")
-        self.lineWidthDoubleSpinBox.setObjectName("lineWidthDoubleSpinBox")
-        self.gridLayout_6.addWidget(self.lineWidthDoubleSpinBox, 1, 3, 1, 1)
-        self.MinXLineEdit = QtWidgets.QLineEdit(self.frame)
-        self.MinXLineEdit.setMinimumSize(QtCore.QSize(25, 50))
-        self.MinXLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 1px solid #000")
-        self.MinXLineEdit.setObjectName("MinXLineEdit")
-        self.gridLayout_6.addWidget(self.MinXLineEdit, 2, 5, 1, 1)
-        self.previewPushButton = QtWidgets.QPushButton(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.YTitleTextEdit = QtWidgets.QTextEdit(self.frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.previewPushButton.sizePolicy().hasHeightForWidth())
-        self.previewPushButton.setSizePolicy(sizePolicy)
-        self.previewPushButton.setMinimumSize(QtCore.QSize(25, 50))
-        font = QtGui.QFont()
-        font.setFamily("Adobe Arabic")
-        font.setPointSize(14)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(9)
-        self.previewPushButton.setFont(font)
-        self.previewPushButton.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+        sizePolicy.setHeightForWidth(self.YTitleTextEdit.sizePolicy().hasHeightForWidth())
+        self.YTitleTextEdit.setSizePolicy(sizePolicy)
+        self.YTitleTextEdit.setMaximumSize(QtCore.QSize(200, 30))
+        self.YTitleTextEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
 "color:#000;\n"
 "border: 1px solid #000")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:/Users/18637/.designer/uisource/preview.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.previewPushButton.setIcon(icon)
-        self.previewPushButton.setIconSize(QtCore.QSize(0, 0))
-        self.previewPushButton.setAutoDefault(False)
-        self.previewPushButton.setObjectName("previewPushButton")
-        self.gridLayout_6.addWidget(self.previewPushButton, 6, 4, 1, 1)
-        self.label_6 = QtWidgets.QLabel(self.frame)
-        self.label_6.setObjectName("label_6")
-        self.gridLayout_6.addWidget(self.label_6, 4, 5, 1, 1)
-        self.label4 = QtWidgets.QLabel(self.frame)
-        self.label4.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 0px solid #000")
-        self.label4.setObjectName("label4")
-        self.gridLayout_6.addWidget(self.label4, 4, 4, 1, 1)
+        self.YTitleTextEdit.setObjectName("YTitleTextEdit")
+        self.gridLayout_6.addWidget(self.YTitleTextEdit, 3, 3, 1, 1)
         self.XTitleTextEdit = QtWidgets.QTextEdit(self.frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
@@ -156,7 +97,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.XTitleTextEdit.sizePolicy().hasHeightForWidth())
         self.XTitleTextEdit.setSizePolicy(sizePolicy)
         self.XTitleTextEdit.setMinimumSize(QtCore.QSize(25, 25))
-        self.XTitleTextEdit.setMaximumSize(QtCore.QSize(200, 50))
+        self.XTitleTextEdit.setMaximumSize(QtCore.QSize(200, 30))
         self.XTitleTextEdit.setBaseSize(QtCore.QSize(25, 25))
         self.XTitleTextEdit.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.XTitleTextEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
@@ -172,21 +113,14 @@ class Ui_MainWindow(object):
         self.XTitleTextEdit.setTabStopDistance(80.0)
         self.XTitleTextEdit.setObjectName("XTitleTextEdit")
         self.gridLayout_6.addWidget(self.XTitleTextEdit, 2, 3, 1, 1)
-        self.label2 = QtWidgets.QLabel(self.frame)
-        self.label2.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 0px solid #000")
-        self.label2.setObjectName("label2")
-        self.gridLayout_6.addWidget(self.label2, 4, 1, 1, 1)
-        self.MaxXLineEdit = QtWidgets.QLineEdit(self.frame)
-        self.MaxXLineEdit.setMinimumSize(QtCore.QSize(25, 50))
-        self.MaxXLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+        self.dpitLineEdit = QtWidgets.QLineEdit(self.frame)
+        self.dpitLineEdit.setMinimumSize(QtCore.QSize(0, 30))
+        self.dpitLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
 "color:#000;\n"
 "border: 1px solid #000")
-        self.MaxXLineEdit.setObjectName("MaxXLineEdit")
-        self.gridLayout_6.addWidget(self.MaxXLineEdit, 2, 4, 1, 1)
+        self.dpitLineEdit.setObjectName("dpitLineEdit")
+        self.gridLayout_6.addWidget(self.dpitLineEdit, 5, 4, 1, 1)
         self.label_3 = QtWidgets.QLabel(self.frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -206,38 +140,176 @@ class Ui_MainWindow(object):
 "border: 0px solid #000")
         self.label_3.setObjectName("label_3")
         self.gridLayout_6.addWidget(self.label_3, 3, 0, 1, 1)
-        self.lineTypeComboBox = QtWidgets.QComboBox(self.frame)
-        self.lineTypeComboBox.setMinimumSize(QtCore.QSize(0, 50))
-        self.lineTypeComboBox.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+        self.pictureNameLineEdit = QtWidgets.QLineEdit(self.frame)
+        self.pictureNameLineEdit.setMinimumSize(QtCore.QSize(0, 30))
+        self.pictureNameLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
 "color:#000;\n"
 "border: 1px solid #000")
-        self.lineTypeComboBox.setObjectName("lineTypeComboBox")
-        self.lineTypeComboBox.addItem("")
-        self.lineTypeComboBox.addItem("")
-        self.lineTypeComboBox.addItem("")
-        self.lineTypeComboBox.addItem("")
-        self.lineTypeComboBox.addItem("")
-        self.lineTypeComboBox.addItem("")
-        self.gridLayout_6.addWidget(self.lineTypeComboBox, 1, 0, 1, 1)
-        self.dpitLineEdit = QtWidgets.QLineEdit(self.frame)
-        self.dpitLineEdit.setMinimumSize(QtCore.QSize(0, 50))
-        self.dpitLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+        self.pictureNameLineEdit.setObjectName("pictureNameLineEdit")
+        self.gridLayout_6.addWidget(self.pictureNameLineEdit, 5, 5, 1, 1)
+        self.MinXLineEdit = QtWidgets.QLineEdit(self.frame)
+        self.MinXLineEdit.setMinimumSize(QtCore.QSize(25, 30))
+        self.MinXLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
 "color:#000;\n"
 "border: 1px solid #000")
-        self.dpitLineEdit.setObjectName("dpitLineEdit")
-        self.gridLayout_6.addWidget(self.dpitLineEdit, 5, 4, 1, 1)
+        self.MinXLineEdit.setObjectName("MinXLineEdit")
+        self.gridLayout_6.addWidget(self.MinXLineEdit, 2, 5, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_6.addItem(spacerItem, 7, 6, 1, 1)
         self.XStepLineEdit = QtWidgets.QLineEdit(self.frame)
-        self.XStepLineEdit.setMinimumSize(QtCore.QSize(25, 50))
+        self.XStepLineEdit.setMinimumSize(QtCore.QSize(25, 30))
         self.XStepLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
 "color:#000;\n"
 "border: 1px solid #000")
         self.XStepLineEdit.setObjectName("XStepLineEdit")
         self.gridLayout_6.addWidget(self.XStepLineEdit, 2, 6, 1, 1)
+        self.MaxYLineEdit = QtWidgets.QLineEdit(self.frame)
+        self.MaxYLineEdit.setMinimumSize(QtCore.QSize(0, 30))
+        self.MaxYLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 1px solid #000")
+        self.MaxYLineEdit.setObjectName("MaxYLineEdit")
+        self.gridLayout_6.addWidget(self.MaxYLineEdit, 3, 4, 1, 1)
+        self.MaxXLineEdit = QtWidgets.QLineEdit(self.frame)
+        self.MaxXLineEdit.setMinimumSize(QtCore.QSize(25, 30))
+        self.MaxXLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 1px solid #000")
+        self.MaxXLineEdit.setObjectName("MaxXLineEdit")
+        self.gridLayout_6.addWidget(self.MaxXLineEdit, 2, 4, 1, 1)
+        self.lineColorPushButton = QtWidgets.QPushButton(self.frame)
+        self.lineColorPushButton.setMinimumSize(QtCore.QSize(0, 30))
+        self.lineColorPushButton.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 1px solid #000")
+        self.lineColorPushButton.setObjectName("lineColorPushButton")
+        self.gridLayout_6.addWidget(self.lineColorPushButton, 1, 1, 1, 1)
+        self.MinYLineEdit = QtWidgets.QLineEdit(self.frame)
+        self.MinYLineEdit.setMinimumSize(QtCore.QSize(0, 30))
+        self.MinYLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 1px solid #000")
+        self.MinYLineEdit.setObjectName("MinYLineEdit")
+        self.gridLayout_6.addWidget(self.MinYLineEdit, 3, 5, 1, 1)
+        self.savePushButton = QtWidgets.QPushButton(self.frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.savePushButton.sizePolicy().hasHeightForWidth())
+        self.savePushButton.setSizePolicy(sizePolicy)
+        self.savePushButton.setMinimumSize(QtCore.QSize(25, 50))
+        font = QtGui.QFont()
+        font.setFamily("Adobe Arabic")
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(9)
+        self.savePushButton.setFont(font)
+        self.savePushButton.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 1px solid #000")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("C:/Users/18637/.designer/uisource/save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.savePushButton.setIcon(icon)
+        self.savePushButton.setIconSize(QtCore.QSize(0, 0))
+        self.savePushButton.setCheckable(False)
+        self.savePushButton.setAutoExclusive(False)
+        self.savePushButton.setAutoDefault(False)
+        self.savePushButton.setObjectName("savePushButton")
+        self.gridLayout_6.addWidget(self.savePushButton, 7, 5, 1, 1)
+        self.YStepLineEdit = QtWidgets.QLineEdit(self.frame)
+        self.YStepLineEdit.setMinimumSize(QtCore.QSize(0, 30))
+        self.YStepLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 1px solid #000")
+        self.YStepLineEdit.setObjectName("YStepLineEdit")
+        self.gridLayout_6.addWidget(self.YStepLineEdit, 3, 6, 1, 1)
+        self.heightLineEdit = QtWidgets.QLineEdit(self.frame)
+        self.heightLineEdit.setMinimumSize(QtCore.QSize(0, 30))
+        self.heightLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 1px solid #000")
+        self.heightLineEdit.setObjectName("heightLineEdit")
+        self.gridLayout_6.addWidget(self.heightLineEdit, 5, 3, 1, 1)
+        self.lineWidthLabel = QtWidgets.QLabel(self.frame)
+        self.lineWidthLabel.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 0px solid #000")
+        self.lineWidthLabel.setObjectName("lineWidthLabel")
+        self.gridLayout_6.addWidget(self.lineWidthLabel, 0, 3, 1, 1)
+        self.YComboBox = QtWidgets.QComboBox(self.frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.YComboBox.sizePolicy().hasHeightForWidth())
+        self.YComboBox.setSizePolicy(sizePolicy)
+        self.YComboBox.setMinimumSize(QtCore.QSize(120, 30))
+        self.YComboBox.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 1px solid #000")
+        self.YComboBox.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToMinimumContentsLength)
+        self.YComboBox.setMinimumContentsLength(10)
+        self.YComboBox.setObjectName("YComboBox")
+        self.YComboBox.addItem("")
+        self.gridLayout_6.addWidget(self.YComboBox, 3, 1, 1, 2)
         spacerItem1 = QtWidgets.QSpacerItem(200, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_6.addItem(spacerItem1, 6, 0, 1, 2)
+        self.gridLayout_6.addItem(spacerItem1, 7, 0, 1, 2)
+        self.label2 = QtWidgets.QLabel(self.frame)
+        self.label2.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 0px solid #000")
+        self.label2.setObjectName("label2")
+        self.gridLayout_6.addWidget(self.label2, 4, 1, 1, 1)
+        self.previewPushButton = QtWidgets.QPushButton(self.frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.previewPushButton.sizePolicy().hasHeightForWidth())
+        self.previewPushButton.setSizePolicy(sizePolicy)
+        self.previewPushButton.setMinimumSize(QtCore.QSize(25, 50))
+        font = QtGui.QFont()
+        font.setFamily("Adobe Arabic")
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(9)
+        self.previewPushButton.setFont(font)
+        self.previewPushButton.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.previewPushButton.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 1px solid #000")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("C:/Users/18637/.designer/uisource/preview.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.previewPushButton.setIcon(icon1)
+        self.previewPushButton.setIconSize(QtCore.QSize(0, 0))
+        self.previewPushButton.setAutoDefault(False)
+        self.previewPushButton.setDefault(False)
+        self.previewPushButton.setFlat(True)
+        self.previewPushButton.setObjectName("previewPushButton")
+        self.gridLayout_6.addWidget(self.previewPushButton, 7, 4, 1, 1)
+        spacerItem2 = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_6.addItem(spacerItem2, 0, 5, 1, 1)
+        self.label3 = QtWidgets.QLabel(self.frame)
+        self.label3.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+"border-radius:5px;\n"
+"color:#000;\n"
+"border: 0px solid #000")
+        self.label3.setObjectName("label3")
+        self.gridLayout_6.addWidget(self.label3, 4, 3, 1, 1)
         self.selectFileButton = QtWidgets.QPushButton(self.frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -258,83 +330,36 @@ class Ui_MainWindow(object):
 "border-radius:5px;\n"
 "color:#000;\n"
 "border: 1px solid #000")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("C:/Users/18637/.designer/uisource/importData.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.selectFileButton.setIcon(icon1)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("C:/Users/18637/.designer/uisource/importData.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.selectFileButton.setIcon(icon2)
         self.selectFileButton.setIconSize(QtCore.QSize(0, 0))
         self.selectFileButton.setAutoDefault(False)
         self.selectFileButton.setDefault(True)
         self.selectFileButton.setFlat(False)
         self.selectFileButton.setObjectName("selectFileButton")
-        self.gridLayout_6.addWidget(self.selectFileButton, 6, 2, 1, 2)
-        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_6.addItem(spacerItem2, 6, 6, 1, 1)
-        self.heightLineEdit = QtWidgets.QLineEdit(self.frame)
-        self.heightLineEdit.setMinimumSize(QtCore.QSize(0, 50))
-        self.heightLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 1px solid #000")
-        self.heightLineEdit.setObjectName("heightLineEdit")
-        self.gridLayout_6.addWidget(self.heightLineEdit, 5, 3, 1, 1)
-        self.lineWidthLabel = QtWidgets.QLabel(self.frame)
-        self.lineWidthLabel.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+        self.gridLayout_6.addWidget(self.selectFileButton, 7, 2, 1, 2)
+        self.label4 = QtWidgets.QLabel(self.frame)
+        self.label4.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
 "color:#000;\n"
 "border: 0px solid #000")
-        self.lineWidthLabel.setObjectName("lineWidthLabel")
-        self.gridLayout_6.addWidget(self.lineWidthLabel, 0, 3, 1, 1)
-        self.MaxYLineEdit = QtWidgets.QLineEdit(self.frame)
-        self.MaxYLineEdit.setMinimumSize(QtCore.QSize(0, 50))
-        self.MaxYLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 1px solid #000")
-        self.MaxYLineEdit.setObjectName("MaxYLineEdit")
-        self.gridLayout_6.addWidget(self.MaxYLineEdit, 3, 4, 1, 1)
-        self.savePushButton = QtWidgets.QPushButton(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.savePushButton.sizePolicy().hasHeightForWidth())
-        self.savePushButton.setSizePolicy(sizePolicy)
-        self.savePushButton.setMinimumSize(QtCore.QSize(25, 50))
+        self.label4.setObjectName("label4")
+        self.gridLayout_6.addWidget(self.label4, 4, 4, 1, 1)
+        self.label_2 = QtWidgets.QLabel(self.frame)
         font = QtGui.QFont()
         font.setFamily("Adobe Arabic")
         font.setPointSize(14)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(9)
-        self.savePushButton.setFont(font)
-        self.savePushButton.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
 "color:#000;\n"
-"border: 1px solid #000")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("C:/Users/18637/.designer/uisource/save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.savePushButton.setIcon(icon2)
-        self.savePushButton.setIconSize(QtCore.QSize(0, 0))
-        self.savePushButton.setCheckable(False)
-        self.savePushButton.setAutoExclusive(False)
-        self.savePushButton.setAutoDefault(False)
-        self.savePushButton.setObjectName("savePushButton")
-        self.gridLayout_6.addWidget(self.savePushButton, 6, 5, 1, 1)
-        self.widthLineEdit = QtWidgets.QLineEdit(self.frame)
-        self.widthLineEdit.setMinimumSize(QtCore.QSize(0, 50))
-        self.widthLineEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 1px solid #000")
-        self.widthLineEdit.setObjectName("widthLineEdit")
-        self.gridLayout_6.addWidget(self.widthLineEdit, 5, 1, 1, 1)
-        self.lineColorPushButton = QtWidgets.QPushButton(self.frame)
-        self.lineColorPushButton.setMinimumSize(QtCore.QSize(0, 50))
-        self.lineColorPushButton.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 1px solid #000")
-        self.lineColorPushButton.setObjectName("lineColorPushButton")
-        self.gridLayout_6.addWidget(self.lineColorPushButton, 1, 1, 1, 1)
+"border: 0px solid #000")
+        self.label_2.setObjectName("label_2")
+        self.gridLayout_6.addWidget(self.label_2, 2, 0, 1, 1)
         self.XComboBox = QtWidgets.QComboBox(self.frame)
         self.XComboBox.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
@@ -342,7 +367,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.XComboBox.sizePolicy().hasHeightForWidth())
         self.XComboBox.setSizePolicy(sizePolicy)
-        self.XComboBox.setMinimumSize(QtCore.QSize(120, 50))
+        self.XComboBox.setMinimumSize(QtCore.QSize(120, 30))
         self.XComboBox.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
 "color:#000;\n"
@@ -351,41 +376,22 @@ class Ui_MainWindow(object):
         self.XComboBox.setObjectName("XComboBox")
         self.XComboBox.addItem("")
         self.gridLayout_6.addWidget(self.XComboBox, 2, 1, 1, 2)
-        self.YTitleTextEdit = QtWidgets.QTextEdit(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.YTitleTextEdit.sizePolicy().hasHeightForWidth())
-        self.YTitleTextEdit.setSizePolicy(sizePolicy)
-        self.YTitleTextEdit.setMaximumSize(QtCore.QSize(200, 50))
-        self.YTitleTextEdit.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
+        self.lineWidthDoubleSpinBox = QtWidgets.QDoubleSpinBox(self.frame)
+        self.lineWidthDoubleSpinBox.setMinimumSize(QtCore.QSize(0, 30))
+        self.lineWidthDoubleSpinBox.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:5px;\n"
 "color:#000;\n"
 "border: 1px solid #000")
-        self.YTitleTextEdit.setObjectName("YTitleTextEdit")
-        self.gridLayout_6.addWidget(self.YTitleTextEdit, 3, 3, 1, 1)
-        self.YComboBox = QtWidgets.QComboBox(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.YComboBox.sizePolicy().hasHeightForWidth())
-        self.YComboBox.setSizePolicy(sizePolicy)
-        self.YComboBox.setMinimumSize(QtCore.QSize(120, 50))
-        self.YComboBox.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
-"border-radius:5px;\n"
-"color:#000;\n"
-"border: 1px solid #000")
-        self.YComboBox.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToMinimumContentsLength)
-        self.YComboBox.setMinimumContentsLength(10)
-        self.YComboBox.setObjectName("YComboBox")
-        self.YComboBox.addItem("")
-        self.gridLayout_6.addWidget(self.YComboBox, 3, 1, 1, 2)
+        self.lineWidthDoubleSpinBox.setObjectName("lineWidthDoubleSpinBox")
+        self.gridLayout_6.addWidget(self.lineWidthDoubleSpinBox, 1, 3, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_6.addItem(spacerItem3, 6, 3, 1, 1)
         self.gridLayout_6.setRowStretch(0, 10)
         self.gridLayout_4.addLayout(self.gridLayout_6, 2, 1, 2, 1)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_4.addItem(spacerItem3, 1, 2, 2, 1)
         spacerItem4 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_4.addItem(spacerItem4, 1, 0, 2, 1)
+        self.gridLayout_4.addItem(spacerItem4, 1, 2, 2, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_4.addItem(spacerItem5, 1, 0, 2, 1)
         self.dataTableWidget = QtWidgets.QTableWidget(self.frame)
         self.dataTableWidget.setStyleSheet("font: 75 14pt \"Adobe Arabic\";\n"
 "border-radius:0px;\n"
@@ -398,8 +404,8 @@ class Ui_MainWindow(object):
         self.dataTableWidget.setRowCount(0)
         self.dataTableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.gridLayout_4.addWidget(self.dataTableWidget, 1, 1, 1, 1)
-        spacerItem5 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.gridLayout_4.addItem(spacerItem5, 0, 0, 1, 3)
+        spacerItem6 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_4.addItem(spacerItem6, 0, 0, 1, 3)
         self.gridLayout_3.addWidget(self.frame, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -432,49 +438,50 @@ class Ui_MainWindow(object):
         MainWindow.setTabOrder(self.MaxXLineEdit, self.MinXLineEdit)
         MainWindow.setTabOrder(self.MinXLineEdit, self.MinYLineEdit)
         MainWindow.setTabOrder(self.MinYLineEdit, self.XStepLineEdit)
-        MainWindow.setTabOrder(self.XStepLineEdit, self.lineEdit_7)
+        MainWindow.setTabOrder(self.XStepLineEdit, self.pictureNameLineEdit)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "layerPaintUtil"))
-        self.label3.setText(_translate("MainWindow", "高"))
-        self.label_2.setText(_translate("MainWindow", "x轴"))
-        self.YStepLineEdit.setText(_translate("MainWindow", "步长"))
-        self.label.setText(_translate("MainWindow", "图片尺寸："))
-        self.MinYLineEdit.setText(_translate("MainWindow", "最小值"))
-        self.lineWidthDoubleSpinBox.setToolTip(_translate("MainWindow", "<html><head/><body><p>线宽</p></body></html>"))
-        self.MinXLineEdit.setText(_translate("MainWindow", "最小值"))
-        self.previewPushButton.setText(_translate("MainWindow", "预览"))
         self.label_6.setText(_translate("MainWindow", "图片名称"))
-        self.label4.setText(_translate("MainWindow", "DPI"))
-        self.XTitleTextEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Adobe Arabic\'; font-size:14pt; font-weight:72; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">x轴标题</p></body></html>"))
-        self.label2.setText(_translate("MainWindow", "宽"))
-        self.MaxXLineEdit.setText(_translate("MainWindow", "最大值"))
-        self.label_3.setText(_translate("MainWindow", "y轴"))
         self.lineTypeComboBox.setItemText(0, _translate("MainWindow", "线型"))
         self.lineTypeComboBox.setItemText(1, _translate("MainWindow", "实线 -"))
         self.lineTypeComboBox.setItemText(2, _translate("MainWindow", "点虚线 :"))
         self.lineTypeComboBox.setItemText(3, _translate("MainWindow", "破折线 --"))
         self.lineTypeComboBox.setItemText(4, _translate("MainWindow", "点划线 -."))
         self.lineTypeComboBox.setItemText(5, _translate("MainWindow", "不画线 "))
-        self.dpitLineEdit.setText(_translate("MainWindow", "120"))
-        self.XStepLineEdit.setText(_translate("MainWindow", "步长"))
-        self.selectFileButton.setText(_translate("MainWindow", "导入数据"))
-        self.heightLineEdit.setText(_translate("MainWindow", "1080"))
-        self.lineWidthLabel.setText(_translate("MainWindow", "线 宽"))
-        self.MaxYLineEdit.setText(_translate("MainWindow", "最大值"))
-        self.savePushButton.setText(_translate("MainWindow", "保存"))
         self.widthLineEdit.setText(_translate("MainWindow", "1920"))
-        self.lineColorPushButton.setText(_translate("MainWindow", "连线颜色"))
-        self.XComboBox.setItemText(0, _translate("MainWindow", "x轴"))
+        self.label.setText(_translate("MainWindow", "图片尺寸："))
         self.YTitleTextEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Adobe Arabic\'; font-size:14pt; font-weight:72; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">y轴标题</p></body></html>"))
+        self.XTitleTextEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Adobe Arabic\'; font-size:14pt; font-weight:72; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">x轴标题</p></body></html>"))
+        self.dpitLineEdit.setText(_translate("MainWindow", "120"))
+        self.label_3.setText(_translate("MainWindow", "y轴"))
+        self.pictureNameLineEdit.setText(_translate("MainWindow", "图片名称"))
+        self.MinXLineEdit.setText(_translate("MainWindow", "最小值"))
+        self.XStepLineEdit.setText(_translate("MainWindow", "步长"))
+        self.MaxYLineEdit.setText(_translate("MainWindow", "最大值"))
+        self.MaxXLineEdit.setText(_translate("MainWindow", "最大值"))
+        self.lineColorPushButton.setText(_translate("MainWindow", "连线颜色"))
+        self.MinYLineEdit.setText(_translate("MainWindow", "最小值"))
+        self.savePushButton.setText(_translate("MainWindow", "保 存"))
+        self.YStepLineEdit.setText(_translate("MainWindow", "步长"))
+        self.heightLineEdit.setText(_translate("MainWindow", "1080"))
+        self.lineWidthLabel.setText(_translate("MainWindow", "线 宽"))
         self.YComboBox.setItemText(0, _translate("MainWindow", "y轴"))
+        self.label2.setText(_translate("MainWindow", "宽"))
+        self.previewPushButton.setText(_translate("MainWindow", "预 览"))
+        self.label3.setText(_translate("MainWindow", "高"))
+        self.selectFileButton.setText(_translate("MainWindow", "导 入 数 据"))
+        self.label4.setText(_translate("MainWindow", "DPI"))
+        self.label_2.setText(_translate("MainWindow", "x轴"))
+        self.XComboBox.setItemText(0, _translate("MainWindow", "x轴"))
+        self.lineWidthDoubleSpinBox.setToolTip(_translate("MainWindow", "<html><head/><body><p>线宽</p></body></html>"))
         self.menulayerPaint.setTitle(_translate("MainWindow", "绘图工具"))

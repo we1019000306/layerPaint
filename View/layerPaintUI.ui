@@ -44,9 +44,12 @@ color:#000;
       <property name="styleSheet">
        <string notr="true"/>
       </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="2" column="1" rowspan="2">
-        <layout class="QGridLayout" name="gridLayout_6" rowstretch="10,0,0,0,0,0,0" columnstretch="0,0,0,0,0,0,0">
+        <layout class="QGridLayout" name="gridLayout_6" rowstretch="10,0,0,0,0,0,0,0" columnstretch="0,0,0,0,0,0,0">
          <property name="sizeConstraint">
           <enum>QLayout::SetFixedSize</enum>
          </property>
@@ -62,47 +65,19 @@ color:#000;
          <property name="bottomMargin">
           <number>6</number>
          </property>
-         <item row="4" column="3">
-          <widget class="QLabel" name="label3">
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 0px solid #000</string>
-           </property>
+         <item row="4" column="5">
+          <widget class="QLabel" name="label_6">
            <property name="text">
-            <string>高</string>
+            <string>图片名称</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="font">
-            <font>
-             <family>Adobe Arabic</family>
-             <pointsize>14</pointsize>
-             <weight>9</weight>
-             <italic>false</italic>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 0px solid #000</string>
-           </property>
-           <property name="text">
-            <string>x轴</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="5">
-          <widget class="QLineEdit" name="lineEdit_7">
+         <item row="1" column="0">
+          <widget class="QComboBox" name="lineTypeComboBox">
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>50</height>
+             <height>30</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -111,14 +86,44 @@ border-radius:5px;
 color:#000;
 border: 1px solid #000</string>
            </property>
+           <item>
+            <property name="text">
+             <string extracomment="连线类型">线型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>实线 -</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>点虚线 :</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>破折线 --</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>点划线 -.</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>不画线 </string>
+            </property>
+           </item>
           </widget>
          </item>
-         <item row="3" column="6">
-          <widget class="QLineEdit" name="YStepLineEdit">
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="widthLineEdit">
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>50</height>
+             <height>30</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -128,7 +133,7 @@ color:#000;
 border: 1px solid #000</string>
            </property>
            <property name="text">
-            <string>步长</string>
+            <string>1920</string>
            </property>
           </widget>
          </item>
@@ -145,98 +150,19 @@ border: 0px solid #000</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="5">
-          <widget class="QLineEdit" name="MinYLineEdit">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 1px solid #000</string>
-           </property>
-           <property name="text">
-            <string>最小值</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="5">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>13</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="3">
-          <widget class="QDoubleSpinBox" name="lineWidthDoubleSpinBox">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;线宽&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 1px solid #000</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="5">
-          <widget class="QLineEdit" name="MinXLineEdit">
-           <property name="minimumSize">
-            <size>
-             <width>25</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 1px solid #000</string>
-           </property>
-           <property name="text">
-            <string>最小值</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="4">
-          <widget class="QPushButton" name="previewPushButton">
+         <item row="3" column="3">
+          <widget class="QTextEdit" name="YTitleTextEdit">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="minimumSize">
+           <property name="maximumSize">
             <size>
-             <width>25</width>
-             <height>50</height>
+             <width>200</width>
+             <height>30</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Adobe Arabic</family>
-             <pointsize>14</pointsize>
-             <weight>9</weight>
-             <italic>false</italic>
-             <bold>false</bold>
-            </font>
            </property>
            <property name="styleSheet">
             <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
@@ -244,41 +170,12 @@ border-radius:5px;
 color:#000;
 border: 1px solid #000</string>
            </property>
-           <property name="text">
-            <string>预览</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>C:/Users/18637/.designer/uisource/preview.png</normaloff>C:/Users/18637/.designer/uisource/preview.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="5">
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>图片名称</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="4">
-          <widget class="QLabel" name="label4">
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 0px solid #000</string>
-           </property>
-           <property name="text">
-            <string>DPI</string>
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Adobe Arabic'; font-size:14pt; font-weight:72; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;y轴标题&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -299,7 +196,7 @@ border: 0px solid #000</string>
            <property name="maximumSize">
             <size>
              <width>200</width>
-             <height>50</height>
+             <height>30</height>
             </size>
            </property>
            <property name="baseSize">
@@ -347,25 +244,12 @@ p, li { white-space: pre-wrap; }
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
-          <widget class="QLabel" name="label2">
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 0px solid #000</string>
-           </property>
-           <property name="text">
-            <string>宽</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="4">
-          <widget class="QLineEdit" name="MaxXLineEdit">
+         <item row="5" column="4">
+          <widget class="QLineEdit" name="dpitLineEdit">
            <property name="minimumSize">
             <size>
-             <width>25</width>
-             <height>50</height>
+             <width>0</width>
+             <height>30</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -375,7 +259,7 @@ color:#000;
 border: 1px solid #000</string>
            </property>
            <property name="text">
-            <string>最大值</string>
+            <string>120</string>
            </property>
           </widget>
          </item>
@@ -407,58 +291,12 @@ border: 0px solid #000</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QComboBox" name="lineTypeComboBox">
+         <item row="5" column="5">
+          <widget class="QLineEdit" name="pictureNameLineEdit">
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 1px solid #000</string>
-           </property>
-           <item>
-            <property name="text">
-             <string extracomment="连线类型">线型</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>实线 -</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>点虚线 :</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>破折线 --</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>点划线 -.</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>不画线 </string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="5" column="4">
-          <widget class="QLineEdit" name="dpitLineEdit">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>50</height>
+             <height>30</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -468,16 +306,48 @@ color:#000;
 border: 1px solid #000</string>
            </property>
            <property name="text">
-            <string>120</string>
+            <string>图片名称</string>
            </property>
           </widget>
+         </item>
+         <item row="2" column="5">
+          <widget class="QLineEdit" name="MinXLineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>25</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 1px solid #000</string>
+           </property>
+           <property name="text">
+            <string>最小值</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="6">
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item row="2" column="6">
           <widget class="QLineEdit" name="XStepLineEdit">
            <property name="minimumSize">
             <size>
              <width>25</width>
-             <height>50</height>
+             <height>30</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -491,7 +361,220 @@ border: 1px solid #000</string>
            </property>
           </widget>
          </item>
-         <item row="6" column="0" colspan="2">
+         <item row="3" column="4">
+          <widget class="QLineEdit" name="MaxYLineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 1px solid #000</string>
+           </property>
+           <property name="text">
+            <string>最大值</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
+          <widget class="QLineEdit" name="MaxXLineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>25</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 1px solid #000</string>
+           </property>
+           <property name="text">
+            <string>最大值</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QPushButton" name="lineColorPushButton">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 1px solid #000</string>
+           </property>
+           <property name="text">
+            <string>连线颜色</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="5">
+          <widget class="QLineEdit" name="MinYLineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 1px solid #000</string>
+           </property>
+           <property name="text">
+            <string>最小值</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="5">
+          <widget class="QPushButton" name="savePushButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>25</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Adobe Arabic</family>
+             <pointsize>14</pointsize>
+             <weight>9</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 1px solid #000</string>
+           </property>
+           <property name="text">
+            <string>保 存</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>C:/Users/18637/.designer/uisource/save.png</normaloff>C:/Users/18637/.designer/uisource/save.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <property name="autoExclusive">
+            <bool>false</bool>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="6">
+          <widget class="QLineEdit" name="YStepLineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 1px solid #000</string>
+           </property>
+           <property name="text">
+            <string>步长</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <widget class="QLineEdit" name="heightLineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 1px solid #000</string>
+           </property>
+           <property name="text">
+            <string>1080</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="lineWidthLabel">
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 0px solid #000</string>
+           </property>
+           <property name="text">
+            <string>线 宽</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1" colspan="2">
+          <widget class="QComboBox" name="YComboBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 1px solid #000</string>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+           </property>
+           <property name="minimumContentsLength">
+            <number>10</number>
+           </property>
+           <item>
+            <property name="text">
+             <string>y轴</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="7" column="0" colspan="2">
           <spacer name="horizontalSpacer_10">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -507,7 +590,102 @@ border: 1px solid #000</string>
            </property>
           </spacer>
          </item>
-         <item row="6" column="2" colspan="2">
+         <item row="4" column="1">
+          <widget class="QLabel" name="label2">
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 0px solid #000</string>
+           </property>
+           <property name="text">
+            <string>宽</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="4">
+          <widget class="QPushButton" name="previewPushButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>25</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Adobe Arabic</family>
+             <pointsize>14</pointsize>
+             <weight>9</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::NoContextMenu</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 1px solid #000</string>
+           </property>
+           <property name="text">
+            <string>预 览</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>C:/Users/18637/.designer/uisource/preview.png</normaloff>C:/Users/18637/.designer/uisource/preview.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+           <property name="default">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>13</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLabel" name="label3">
+           <property name="styleSheet">
+            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
+border-radius:5px;
+color:#000;
+border: 0px solid #000</string>
+           </property>
+           <property name="text">
+            <string>高</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="2" colspan="2">
           <widget class="QPushButton" name="selectFileButton">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -546,7 +724,7 @@ color:#000;
 border: 1px solid #000</string>
            </property>
            <property name="text">
-            <string>导入数据</string>
+            <string>导 入 数 据</string>
            </property>
            <property name="icon">
             <iconset>
@@ -569,40 +747,8 @@ border: 1px solid #000</string>
            </property>
           </widget>
          </item>
-         <item row="6" column="6">
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="5" column="3">
-          <widget class="QLineEdit" name="heightLineEdit">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 1px solid #000</string>
-           </property>
-           <property name="text">
-            <string>1080</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="lineWidthLabel">
+         <item row="4" column="4">
+          <widget class="QLabel" name="label4">
            <property name="styleSheet">
             <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
 border-radius:5px;
@@ -610,43 +756,12 @@ color:#000;
 border: 0px solid #000</string>
            </property>
            <property name="text">
-            <string>线 宽</string>
+            <string>DPI</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="4">
-          <widget class="QLineEdit" name="MaxYLineEdit">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 1px solid #000</string>
-           </property>
-           <property name="text">
-            <string>最大值</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="5">
-          <widget class="QPushButton" name="savePushButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>25</width>
-             <height>50</height>
-            </size>
-           </property>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_2">
            <property name="font">
             <font>
              <family>Adobe Arabic</family>
@@ -660,67 +775,10 @@ border: 1px solid #000</string>
             <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
 border-radius:5px;
 color:#000;
-border: 1px solid #000</string>
+border: 0px solid #000</string>
            </property>
            <property name="text">
-            <string>保存</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>C:/Users/18637/.designer/uisource/save.png</normaloff>C:/Users/18637/.designer/uisource/save.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="checkable">
-            <bool>false</bool>
-           </property>
-           <property name="autoExclusive">
-            <bool>false</bool>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QLineEdit" name="widthLineEdit">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 1px solid #000</string>
-           </property>
-           <property name="text">
-            <string>1920</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QPushButton" name="lineColorPushButton">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 1px solid #000</string>
-           </property>
-           <property name="text">
-            <string>连线颜色</string>
+            <string>x轴</string>
            </property>
           </widget>
          </item>
@@ -738,7 +796,7 @@ border: 1px solid #000</string>
            <property name="minimumSize">
             <size>
              <width>120</width>
-             <height>50</height>
+             <height>30</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -757,67 +815,37 @@ border: 1px solid #000</string>
            </item>
           </widget>
          </item>
-         <item row="3" column="3">
-          <widget class="QTextEdit" name="YTitleTextEdit">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
+         <item row="1" column="3">
+          <widget class="QDoubleSpinBox" name="lineWidthDoubleSpinBox">
+           <property name="minimumSize">
             <size>
-             <width>200</width>
-             <height>50</height>
+             <width>0</width>
+             <height>30</height>
             </size>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;线宽&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="styleSheet">
             <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
 border-radius:5px;
 color:#000;
 border: 1px solid #000</string>
-           </property>
-           <property name="html">
-            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Adobe Arabic'; font-size:14pt; font-weight:72; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;y轴标题&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="1" colspan="2">
-          <widget class="QComboBox" name="YComboBox">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+         <item row="6" column="3">
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
            </property>
-           <property name="minimumSize">
+           <property name="sizeHint" stdset="0">
             <size>
-             <width>120</width>
-             <height>50</height>
+             <width>20</width>
+             <height>20</height>
             </size>
            </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 14pt &quot;Adobe Arabic&quot;;
-border-radius:5px;
-color:#000;
-border: 1px solid #000</string>
-           </property>
-           <property name="sizeAdjustPolicy">
-            <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-           </property>
-           <property name="minimumContentsLength">
-            <number>10</number>
-           </property>
-           <item>
-            <property name="text">
-             <string>y轴</string>
-            </property>
-           </item>
-          </widget>
+          </spacer>
          </item>
         </layout>
        </item>
@@ -928,7 +956,7 @@ background-color:#FFF</string>
   <tabstop>MinXLineEdit</tabstop>
   <tabstop>MinYLineEdit</tabstop>
   <tabstop>XStepLineEdit</tabstop>
-  <tabstop>lineEdit_7</tabstop>
+  <tabstop>pictureNameLineEdit</tabstop>
  </tabstops>
  <resources/>
  <connections/>
