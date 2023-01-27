@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
 from PyQt5 import QtCore, QtWidgets
-from View.previewDialog import Ui_Dialog
+from layerPaint.View.previewDialog import Ui_Dialog
 
 
 class previewDialog(QtWidgets.QMainWindow,Ui_Dialog):
