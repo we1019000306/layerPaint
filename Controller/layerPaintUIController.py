@@ -28,90 +28,12 @@ from Controller import previewDialogController
 dataDictList:list = []
 dataDictKey:list = []
 figList:list = []
-
+pd.set_option('display.max_columns', None)   #显示完整的列
+pd.set_option('display.max_rows', None)  #显示完整的行
 class window(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        # # 获取显示器分辨率大小
-        # screenDesktop = QApplication.desktop()
-        # screenRect = screenDesktop.screenGeometry()
-        # screenHeight = int(screenRect.height())
-        # screenWidth = int(screenRect.width())
-        # factor = screenWidth/self.width()
-        # #print(factor)
-        #
-        # self.resize(screenWidth,screenHeight)
-        # self.dataTableWidget_2.resize(int(screenWidth/2)-100,int(screenHeight-100))
-        #
-        # self.imgLabel1.resize(0,0)
-        # self.imgLabel1.move(int(self.dataTableWidget_2.width() + self.dataTableWidget_2.rect().x() + ((screenWidth - self.dataTableWidget_2.width()*2  -self.dataTableWidget_2.rect().x())/2)),int(self.imgLabel1.y()))
-        # #print(self.imgLabel1.y())
-        #
-        # self.lineTypeComboBox.resize(int(self.lineTypeComboBox.width()*factor * 3/4),int(self.lineTypeComboBox.height()*factor*3/4))
-        # self.lineTypeComboBox.move(self.imgLabel1.x(),self.imgLabel1.y()+self.lineWidthLabel.height()+self.imgLabel1.rect().height()+40+int(self.lineTypeComboBox.height()*factor*3/4))
-        #
-        # self.lineColorPushButton.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
-        # self.lineColorPushButton.move(self.lineTypeComboBox.x()+self.lineTypeComboBox.width()+int(20*factor),int(self.lineTypeComboBox.y()))
-        #
-        # self.lineWidthDoubleSpinBox.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
-        # self.lineWidthDoubleSpinBox.move(self.lineColorPushButton.x() + self.lineColorPushButton.width() + int(20 * factor),int(self.lineTypeComboBox.y()))
-        # self.lineWidthDoubleSpinBox.setValue(1.00)
-        #
-        # self.lineWidthLabel.resize(self.lineWidthDoubleSpinBox.width(),int(self.lineWidthDoubleSpinBox.height()*2/3))
-        # self.lineWidthLabel.move(self.lineColorPushButton.x() + self.lineColorPushButton.width() + int(20 * factor),int(self.lineWidthDoubleSpinBox.y() - self.lineWidthLabel.height()))
-        # self.lineWidthLabel.setAlignment(QtCore.Qt.AlignmentFlag(4))
-        #
-        # self.XComboBox.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
-        # self.XComboBox.move(self.lineWidthDoubleSpinBox.x() + self.lineWidthDoubleSpinBox.width() + int(20 * factor),int(self.lineWidthDoubleSpinBox.y()))
-        #
-        # self.YComboBox.resize(self.lineTypeComboBox.width(),self.lineTypeComboBox.height())
-        # self.YComboBox.move(self.XComboBox.x() + self.XComboBox.width() + int(20 * factor), int(self.lineTypeComboBox.y()))
-        #
-        # #label 图片尺寸：
-        # self.label.resize(int(self.label.width()*factor),int(self.label.height()*factor))
-        # self.label.move(self.lineTypeComboBox.x(),int(self.lineTypeComboBox.y()+self.lineTypeComboBox.height()+20*factor))
-        #
-        # #label 宽
-        # self.label2.resize(int(self.label2.width() * factor), int(self.label2.height() * factor))
-        # self.label2.move(self.lineTypeComboBox.x()+self.label.width(),int(self.label.y()))
-        #
-        # self.widthLineEdit.resize(int(self.widthLineEdit.width() * factor), int(self.widthLineEdit.height() * factor))
-        # self.widthLineEdit.move(self.label2.x() + self.label2.width(),int(self.label.y()))
-        # self.widthLineEdit.setText('1000')
-        #
-        # #label 高
-        # self.label3.resize(int(self.label3.width() * factor), int(self.label3.height() * factor))
-        # self.label3.move(int(self.widthLineEdit.x() + self.widthLineEdit.width() + 10*factor),int(self.label.y()))
-        #
-        # self.heightLineEdit.resize(int(self.heightLineEdit.width() * factor), int(self.heightLineEdit.height() * factor))
-        # self.heightLineEdit.move(int(self.label3.x() + self.label3.width()),int(self.label.y()))
-        # self.heightLineEdit.setText('500')
-        #
-        # # label dpi
-        # self.label4.resize(int(self.label4.width() * factor),int(self.label4.height() * factor))
-        # self.label4.move(int(self.heightLineEdit.x() + self.heightLineEdit.width() + 10*factor),int(self.label.y()))
-        #
-        # self.dpitLineEdit.resize(int(self.dpitLineEdit.width() * factor), int(self.dpitLineEdit.height() * factor))
-        # self.dpitLineEdit.move(int(self.label4.x() + self.label4.width()),int(self.label.y()))
-        # self.dpitLineEdit.setText('120')
-        #
-        # self.selectFileButton.resize(int(self.selectFileButton.width() * factor), int(self.selectFileButton.height() * factor))
-        # self.selectFileButton.move(int(self.label2.x()),int(screenHeight - 3*self.selectFileButton.height() - 20*factor))
-        #
-        # self.previewPushButton.resize(int(self.previewPushButton.width() * factor), int(self.previewPushButton.height() * factor))
-        # self.previewPushButton.move(int(self.selectFileButton.x() + self.selectFileButton.width() + 10 * factor), int(screenHeight - 3*self.selectFileButton.height() - 20*factor))
-        #
-        # self.savePushButton.resize(int(self.savePushButton.width() * factor),int(self.savePushButton.height() * factor))
-        # self.savePushButton.move(int(self.previewPushButton.x() + self.previewPushButton.width() + 10 * factor),int(screenHeight - 3*self.selectFileButton.height() - 20*factor))
-
-
-        # print("border-image: url(" + getImgUrl(os.getcwd()) + "/uisource/fileSource.png);\n" "")
-        # os.chdir("..")
-        # print(getImgUrl(os.getcwd()) + "/uisource/fileSource.png;\n")
-        #
-        # self.selectFileButton.setIcon(QtGui.QIcon(getImgUrl(os.getcwd()) + "/uisource/fileSource.png"))
-        # self.selectFileButton.setIconSize(QtCore.QSize(20, 20))
         self.lineColorPushButton.clicked.connect(self.lineColorPushButtonClicked)
         self.selectFileButton.clicked.connect(self.getFileOnClicked)
         self.selectFileButton.clicked.connect(self.loadBaseData)
@@ -132,14 +54,13 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         self.thread_2 = Thread_2()
         self.thread_2._signal.connect(self.setSelectFileButtonEnable)
         self.thread_2.start()
-
-
-        fileName, fileType = QFileDialog.getOpenFileName(self, "打开表格", "", "*.xlsx;*.xls;;All Files(*)")
+        fileName, fileType = QFileDialog.getOpenFileName(self,
+                                                         "打开表格",
+                                                         "",
+                                                         "*.xlsx;*.xls;;All Files(*)")
         global path_openfile_name
 
         ###获取路径====================================================================
-
-
         if fileName == '':
             print('111111')
             path_openfile_name = ''
@@ -147,11 +68,6 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         else:
             path_openfile_name = fileName
 
-        #print(fileName)
-
-        # if exam_excel[0] != '':
-        #     self.view.set_excel_edit_line(exam_excel[0])
-        #     print(exam_excel[0])
     def loadBaseData(self):
         global dataDictKey
         global path_openfile_name
@@ -219,24 +135,13 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                 for i in dataDictKey:
                     xDictList.append(i)
                     yDictList.append(i)
-            xArray = dataDictList[self.XComboBox.currentIndex()]
-            yArray = dataDictList[self.YComboBox.currentIndex()]
 
-            xMax = float(max(xArray))
-            xMin = float(min(xArray))
-            yMax = float(max(yArray))
-            yMin = float(min(yArray))
-            xStep = myArangeUtil.caculateUnitStep(xMax, xMin)
-            yStep = myArangeUtil.caculateUnitStep(yMax, yMin)
-            self.MaxXLineEdit.setText(str(xMax))
-            self.MinXLineEdit.setText(str(xMin))
-            self.XStepLineEdit.setText(str(xStep))
-            self.MaxYLineEdit.setText(str(yMax))
-            self.MinYLineEdit.setText(str(yMin))
-            self.YStepLineEdit.setText(str(yStep))
             # self.XComboBox.adjustSize()
             # self.YComboBox.adjustSize()
-
+            self.adaptXEdit()
+            self.adaptYEdit()
+            self.adaptXTitle()
+            self.adaptYTitle()
             #图片名称
             #self.pictureNameLineEdit.setText()
             QApplication.processEvents()
@@ -308,27 +213,24 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                print(dataDictList)
                xNoNoneArray,yNoNoneArray = handlerUnlegalData(dataDictList[self.XComboBox.currentIndex()],
                                   dataDictList[self.YComboBox.currentIndex()])
-               xMax = float(max(xNoNoneArray))
-               xMin = float(min(xNoNoneArray))
-               yMax = float(max(yNoNoneArray))
-               yMin = float(min(yNoNoneArray))
+               # xMax = float(max(xNoNoneArray))
+               # xMin = float(min(xNoNoneArray))
+               # yMax = float(max(yNoNoneArray))
+               # yMin = float(min(yNoNoneArray))
+               #
+               # print(xMax)
+               # print(yMax)
 
-               xStep = myArangeUtil.caculateUnitStep(xMax, xMin)
-               yStep = myArangeUtil.caculateUnitStep(yMax,yMin)
-               print(xMax)
-               print(yMax)
-               print(xStep)
-               print(yStep)
                drawPlotWithParameterInGui(xNoNoneArray,
                                           myStringUtil.superscriptNumberWithString(self.XTitleTextEdit.toPlainText()),
-                                          xMax,
-                                          xMin,
-                                          xStep,
+                                          float(self.MaxXLineEdit.text()),
+                                          float(self.MinXLineEdit.text()),
+                                          float(self.XStepLineEdit.text()),
                                           yNoNoneArray,
                                           myStringUtil.superscriptNumberWithString(self.YTitleTextEdit.toPlainText()),
-                                          yMax,
-                                          yMin,
-                                          yStep,
+                                          float(self.MaxYLineEdit.text()),
+                                          float(self.MinYLineEdit.text()),
+                                          float(self.YStepLineEdit.text()),
                                           self.currentLineStyle(self.lineTypeComboBox.currentIndex()),
                                           self.lineWidthDoubleSpinBox.text(),
                                           str(self.lineColorPushButton.text()),
@@ -360,9 +262,14 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def XComboBoxValueChanged(self):
         print('X轴改变了！！！')
+        self.adaptXEdit()
+        self.adaptXTitle()
+
 
     def YComboBoxValueChanged(self):
         print('Y轴改变了！！！')
+        self.adaptYEdit()
+        self.adaptYTitle()
 
     def showDialog(self):
         col = QColorDialog.getColor()
@@ -452,6 +359,36 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                                     '警告！！',
                                     '你还未绘制图片！！')
 
+    def adaptXEdit(self):
+        xArray = dataDictList[self.XComboBox.currentIndex()]
+        xFloatArray = []
+        for n in xArray:
+            xFloatArray.append(float(n))
+        xMax = float(max(xFloatArray))
+        xMin = float(min(xFloatArray))
+        print(str(xMax) + '!!!!!!!!!!!!!!!!!!')
+        xStep = myArangeUtil.caculateUnitStep(xMax, xMin)
+        self.MaxXLineEdit.setText(str(xMax))
+        self.MinXLineEdit.setText(str(xMin))
+        self.XStepLineEdit.setText(str(xStep))
+
+    def adaptYEdit(self):
+        yArray = dataDictList[self.YComboBox.currentIndex()]
+        yFloatArray = []
+        for m in yArray:
+            yFloatArray.append(float(m))
+        yMax = float(max(yFloatArray))
+        yMin = float(min(yFloatArray))
+        print(str(yMax) + '~~~~~~~~~~~~~~~~~~')
+        yStep = myArangeUtil.caculateUnitStep(yMax, yMin)
+        self.MaxYLineEdit.setText(str(yMax))
+        self.MinYLineEdit.setText(str(yMin))
+        self.YStepLineEdit.setText(str(yStep))
+    def adaptXTitle(self):
+        self.XTitleTextEdit.setPlainText(self.XComboBox.currentText())
+
+    def adaptYTitle(self):
+        self.YTitleTextEdit.setPlainText(self.YComboBox.currentText())
 
 def handlerUnlegalData(xArray:list,
                        yArray:list):
@@ -486,12 +423,12 @@ def drawPlotWithParameterInGui(xArray:list,
                                xTitle:str,
                                xMax:float,
                                xMin:float,
-                               xStep:int,
+                               xStep:float,
                                yArray:list,
                                yTitle:str,
                                yMax:float,
                                yMin:float,
-                               yStep:int,
+                               yStep:float,
                                lineStyle:str,
                                lineWidth:str,
                                lineColor:str,
@@ -556,6 +493,7 @@ def drawPlotWithParameterInGui(xArray:list,
     plt.savefig(os.getcwd()+'\\'+'preview.png')
     #plt.scatter([-y for y in yArray], xArray)
     plt.show()
+
 
 
 
@@ -641,4 +579,5 @@ if __name__ == '__main__':
     MainWindow = window()  # 创建窗体对象
     MainWindow.show()  # 显示窗体
     sys.exit(app.exec_())  # 程序关闭时退出进程
+
 
