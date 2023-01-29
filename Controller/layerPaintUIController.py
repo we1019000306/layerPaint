@@ -181,7 +181,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
        self.thread_3 = Thread_3()
        self.thread_3._reloadUISignal.connect(self.setPreviewButtonEnable)
        self.thread_3.start()
-
+       self.getDataFromTableWidget()
        if(len(dataDictList)>0):
            screenDesktop = QApplication.desktop()
            screenRect = screenDesktop.screenGeometry()
@@ -301,12 +301,13 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
     def getDataFromTableWidget(self):
         global dataDictKey
         global dataDictList
+        dataDictList.clear()
+        dataDictKey.clear()
         # dataDictList.append([0,1,2])
         rowCount = self.dataTableWidget.rowCount()
         columnCount = self.dataTableWidget.columnCount()
         #print(self.dataTableWidget_2.item(0,0).text())
         #print(dataDictKey)
-        print()
         i = 0
         while i < columnCount:
             columnDataList = []
