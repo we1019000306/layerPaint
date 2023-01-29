@@ -24,7 +24,6 @@ import os
 from Controller.previewDialogController import previewDialog
 from Controller import previewDialogController
 
-
 dataDictList:list = []
 dataDictKey:list = []
 figList:list = []
@@ -135,7 +134,6 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                 for i in dataDictKey:
                     xDictList.append(i)
                     yDictList.append(i)
-
             # self.XComboBox.adjustSize()
             # self.YComboBox.adjustSize()
             self.adaptXEdit()
@@ -220,6 +218,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                #
                # print(xMax)
                # print(yMax)
+
 
                drawPlotWithParameterInGui(xNoNoneArray,
                                           myStringUtil.superscriptNumberWithString(self.XTitleTextEdit.toPlainText()),

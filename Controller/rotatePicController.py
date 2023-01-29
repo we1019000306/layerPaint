@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 
 # 读取图片
-src = cv2.imread(os.getcwd() + '\\' + '1.png', cv2.IMREAD_UNCHANGED)
+src = cv2.imread(os.getcwd() + '//' + '1.png', cv2.IMREAD_UNCHANGED)
 
 # 原图的高、宽 以及通道数
 rows, cols, channel = src.shape
