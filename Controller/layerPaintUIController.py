@@ -131,6 +131,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                 if self.lineColorPushButton.text() == '连线颜色':
                     self.lineColorPushButton.setText('#000000')
                     self.lineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
+
                 print(self.XComboBox.currentIndex())
                 # 处理当未选择X轴或Y轴时默认的预览图
                 xDictList = [self.XComboBox.currentText()]

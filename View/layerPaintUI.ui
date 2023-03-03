@@ -847,6 +847,27 @@ border: 1px solid #000</string>
            </property>
           </spacer>
          </item>
+         <item row="1" column="4">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>最大值</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="5">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>最小值</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="6">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>步长</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item row="1" column="2" rowspan="2">
@@ -940,23 +961,25 @@ background-color:#FFF</string>
  <tabstops>
   <tabstop>widthLineEdit</tabstop>
   <tabstop>heightLineEdit</tabstop>
-  <tabstop>XComboBox</tabstop>
-  <tabstop>YComboBox</tabstop>
-  <tabstop>dataTableWidget</tabstop>
+  <tabstop>dpitLineEdit</tabstop>
+  <tabstop>pictureNameLineEdit</tabstop>
+  <tabstop>selectFileButton</tabstop>
   <tabstop>previewPushButton</tabstop>
+  <tabstop>savePushButton</tabstop>
   <tabstop>lineTypeComboBox</tabstop>
   <tabstop>lineColorPushButton</tabstop>
-  <tabstop>dpitLineEdit</tabstop>
   <tabstop>lineWidthDoubleSpinBox</tabstop>
-  <tabstop>savePushButton</tabstop>
-  <tabstop>selectFileButton</tabstop>
-  <tabstop>MaxYLineEdit</tabstop>
-  <tabstop>YStepLineEdit</tabstop>
+  <tabstop>XComboBox</tabstop>
+  <tabstop>XTitleTextEdit</tabstop>
   <tabstop>MaxXLineEdit</tabstop>
   <tabstop>MinXLineEdit</tabstop>
-  <tabstop>MinYLineEdit</tabstop>
   <tabstop>XStepLineEdit</tabstop>
-  <tabstop>pictureNameLineEdit</tabstop>
+  <tabstop>YComboBox</tabstop>
+  <tabstop>YTitleTextEdit</tabstop>
+  <tabstop>MaxYLineEdit</tabstop>
+  <tabstop>MinYLineEdit</tabstop>
+  <tabstop>YStepLineEdit</tabstop>
+  <tabstop>dataTableWidget</tabstop>
  </tabstops>
  <resources/>
  <connections/>
