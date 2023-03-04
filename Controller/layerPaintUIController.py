@@ -34,6 +34,7 @@ pd.set_option('display.max_columns', None)   #显示完整的列
 pd.set_option('display.max_rows', None)  #显示完整的行
 class window(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self):
+        global newYDataList
         super().__init__()
         self.setupUi(self)
         self.y1LineColorPushButton.clicked.connect(self.lineColorPushButtonClicked)
@@ -45,6 +46,15 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         self.y1ComboBox.activated[str].connect(self.YComboBoxValueChanged)
         self.addYpushButton.clicked.connect(self.addYDataButtonClicked)
         self.deleteYPushButton.clicked.connect(self.deleteYDataButtonClicked)
+        newYDataList.append([self.y1Label,
+                             self.y1ComboBox,
+                             self.y1TitleTextEdit,
+                             self.y1LineTypeComboBox,
+                             self.y1LineWidthDoubleSpinBox,
+                             self.y1LineColorPushButton,
+                             self.y1MaxYLineEdit,
+                             self.y1MinYLineEdit,
+                             self.y1StepLineEdit])
         # self.mainGridLayout.setContentsMargins(6, 10, 6, 10)
 
         # np数组生成的图
@@ -81,8 +91,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         dataDictList.clear()
         dataDictKey.clear()
         tableHeaderList.clear()
-        self.XComboBox.clear()
-        self.y1ComboBox.clear()
+
         # self.XComboBox.addItem('x轴')
         # self.y1ComboBox.addItem('y轴')
         ###===========读取表格，转换表格，===========================================
@@ -127,14 +136,18 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                     # 刷新界面命令：
             #self.XComboBox.addItems(['1', '2', '3'])
             tableHeaderList = myStringUtil.deleteBlankStringWithList(input_table_header)
-            self.XComboBox.addItems(tableHeaderList)
-            self.y1ComboBox.addItems(tableHeaderList)
-            self.y1LineTypeComboBox.setCurrentIndex(1)
-            self.y1LineWidthDoubleSpinBox.setValue(1.0)
-            self.y1LineColorPushButton.setText('#000000')
-            self.y1LineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
+            # self.XComboBox.addItems(tableHeaderList)
+            # self.y1ComboBox.addItems(tableHeaderList)
+            # self.y1LineTypeComboBox.setCurrentIndex(1)
+            # self.y1LineWidthDoubleSpinBox.setValue(1.0)
+            # self.y1LineColorPushButton.setText('#000000')
+            # self.y1LineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
 
             if len(newYDataList) > 0 :
+                # self.XComboBox.addItem('x轴')
+                self.XComboBox.clear()
+                self.XComboBox.addItems(tableHeaderList)
+                self.XComboBox.setCurrentIndex(0)
                 for i in newYDataList:
                     i[1].clear()
                     i[1].addItems(tableHeaderList)
@@ -145,23 +158,23 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                         i[5].setStyleSheet('QWidget {background-color:#000000}')
 
 
-            #计算出建议的最大x、y分别的最大值，最小值和步长
+
             if 0 < len(dataDictKey):
                 self.getDataFromTableWidget()
-                print(dataDictList[self.XComboBox.currentIndex()])
-                print(dataDictList[self.y1ComboBox.currentIndex()])
-                print(self.y1LineColorPushButton.text())
-                if self.y1LineColorPushButton.text() == '连线颜色':
-                    self.y1LineColorPushButton.setText('#000000')
-                    self.y1LineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
-
-                print(self.XComboBox.currentIndex())
-                # 处理当未选择X轴或Y轴时默认的预览图
-                xDictList = [self.XComboBox.currentText()]
-                yDictList = [self.y1ComboBox.currentText()]
-                for i in dataDictKey:
-                    xDictList.append(i)
-                    yDictList.append(i)
+                # print(dataDictList[self.XComboBox.currentIndex()])
+                # print(dataDictList[self.y1ComboBox.currentIndex()])
+                # print(self.y1LineColorPushButton.text())
+                # if self.y1LineColorPushButton.text() == '连线颜色':
+                #     self.y1LineColorPushButton.setText('#000000')
+                #     self.y1LineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
+                #
+                # print(self.XComboBox.currentIndex())
+                # # 处理当未选择X轴或Y轴时默认的预览图
+                # xDictList = [self.XComboBox.currentText()]
+                # yDictList = [self.y1ComboBox.currentText()]
+                # for i in dataDictKey:
+                #     xDictList.append(i)
+                #     yDictList.append(i)
             # self.XComboBox.adjustSize()
             # self.y1ComboBox.adjustSize()
             self.adaptXEdit()
@@ -247,12 +260,12 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                # print(xMax)
                # print(yMax)
 
-               if len(newYDataList) > 0:
+               if len(newYDataList) > 1:
                    # for i in newYDataList:
                    #     y = np.array()
                     QMessageBox.information(MainWindow,'!!!!','~~~~~~~~~')
                else:
-                   drawPlotWithParameterInGui(xNoNoneArray,
+                   drawSinglePlotWithParameterInGui(xNoNoneArray,
                                               myStringUtil.superscriptNumberWithString(self.XTitleTextEdit.toPlainText()),
                                               float(self.MaxXLineEdit.text()),
                                               float(self.MinXLineEdit.text()),
@@ -299,7 +312,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         #     print('当前无新增Y轴')
         # else:
         #     for i in newYDataList:
-        currentIndexStr = str(len(newYDataList) + 2)
+        currentIndexStr = str(len(newYDataList) + 1)
 
         #yLabel
         yLabel = QLabel(QtWidgets.QFrame(self.y1Label))
@@ -493,12 +506,13 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         print('当前新增y轴数为%d'%len(newYDataList))
         print('新增y轴分别为', newYDataList)
         # newYDataList.append(str(len(newYDataList)+2))
-
+        # self.adaptYEdit()
+        # self.adaptYTitle()
 
 
     def deleteYDataButtonClicked(self):
         global newYDataList
-        if len(newYDataList) > 0:
+        if len(newYDataList) > 1:
             for i in newYDataList[-1]:
                 self.mainGridLayout.removeWidget(i)
             newYDataList.pop(-1)
@@ -623,49 +637,47 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
             QMessageBox.information(MainWindow, '警告！！！', '没有可用数据源！！！')
 
     def adaptYEdit(self):
+        # 根据点击按钮事件，计算出建议的最大x、y分别的最大值，最小值和步长
         global newYDataList
         if len(dataDictList) > 0:
-            if 'y' in self.sender().objectName():
-                if '1' in self.sender().objectName():
-                    yArray = dataDictList[self.y1ComboBox.currentIndex()]
-                    yFloatArray = []
-                    for m in yArray:
-                        yFloatArray.append(float(m))
-                    yMax = float(max(yFloatArray))
-                    yMin = float(min(yFloatArray))
-                    print(str(yMax) + '~~~~~~~~~~~~~~~~~~')
-                    yStep = myArangeUtil.caculateUnitStep(yMax, yMin)
-                    self.y1MaxYLineEdit.setText(str(yMax))
-                    self.y1MinYLineEdit.setText(str(yMin))
-                    self.y1StepLineEdit.setText(str(yStep))
-
-                else:
-                    #通过widgetsObjectName名称拿到当前点击的行数索引
-                    indexStr = self.sender().objectName()[1]
-                    print('-------------'+indexStr+'!!!!!!!!!!!!!!')
-                    yArray = dataDictList[newYDataList[int(indexStr)-2][1].currentIndex()]
-                    yFloatArray = []
-                    for m in yArray:
-                        yFloatArray.append(float(m))
-                    yMax = float(max(yFloatArray))
-                    yMin = float(min(yFloatArray))
-                    yStep = myArangeUtil.caculateUnitStep(yMax, yMin)
-                    newYDataList[int(indexStr)-2][6].setText(str(yMax))
-                    newYDataList[int(indexStr)-2][7].setText(str(yMin))
-                    newYDataList[int(indexStr)-2][8].setText(str(yStep))
-            else:
-                #至少有一个y轴，在点击导入按钮时响应，导入文件后需要显示出数据！！！
-                yArray = dataDictList[self.y1ComboBox.currentIndex()]
+            #第一次点击选择导入数据源时需要给初始Y轴填入数据
+            if self.sender().objectName() == 'selectFileButton':
+                yArray = dataDictList[newYDataList[0][1].currentIndex()]
                 yFloatArray = []
                 for m in yArray:
                     yFloatArray.append(float(m))
                 yMax = float(max(yFloatArray))
                 yMin = float(min(yFloatArray))
-                print(str(yMax) + '~~~~~~~~~~~~~~~~~~')
                 yStep = myArangeUtil.caculateUnitStep(yMax, yMin)
-                self.y1MaxYLineEdit.setText(str(yMax))
-                self.y1MinYLineEdit.setText(str(yMin))
-                self.y1StepLineEdit.setText(str(yStep))
+                newYDataList[0][6].setText(str(yMax))
+                newYDataList[0][7].setText(str(yMin))
+                newYDataList[0][8].setText(str(yStep))
+            else:
+                indexStr = self.sender().objectName()[1]
+                print('-------------' + indexStr + '!!!!!!!!!!!!!!')
+                yArray = dataDictList[newYDataList[int(indexStr) - 1][1].currentIndex()]
+                yFloatArray = []
+                for m in yArray:
+                    yFloatArray.append(float(m))
+                yMax = float(max(yFloatArray))
+                yMin = float(min(yFloatArray))
+                yStep = myArangeUtil.caculateUnitStep(yMax, yMin)
+                newYDataList[int(indexStr) - 1][6].setText(str(yMax))
+                newYDataList[int(indexStr) - 1][7].setText(str(yMin))
+                newYDataList[int(indexStr) - 1][8].setText(str(yStep))
+            # else:
+            #     #至少有一个y轴，在点击导入按钮时响应，导入文件后需要显示出数据！！！
+            #     yArray = dataDictList[self.y1ComboBox.currentIndex()]
+            #     yFloatArray = []
+            #     for m in yArray:
+            #         yFloatArray.append(float(m))
+            #     yMax = float(max(yFloatArray))
+            #     yMin = float(min(yFloatArray))
+            #     print(str(yMax) + '~~~~~~~~~~~~~~~~~~')
+            #     yStep = myArangeUtil.caculateUnitStep(yMax, yMin)
+            #     self.y1MaxYLineEdit.setText(str(yMax))
+            #     self.y1MinYLineEdit.setText(str(yMin))
+            #     self.y1StepLineEdit.setText(str(yStep))
 
 
         else:
@@ -676,7 +688,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def adaptYTitle(self):
         global newYDataList
-        self.y1TitleTextEdit.setPlainText(self.y1ComboBox.currentText())
+        # self.y1TitleTextEdit.setPlainText(self.y1ComboBox.currentText())
         if len(newYDataList) > 0 :
             for i in newYDataList:
                 i[2].setPlainText(i[1].currentText())
@@ -711,7 +723,7 @@ def handlerUnlegalData(xArray:list,
     return xNoNoneArray,yNoNoneArray
 
 
-def drawPlotWithParameterInGui(xArray:list,
+def drawSinglePlotWithParameterInGui(xArray:list,
                                xTitle:str,
                                xMax:float,
                                xMin:float,
@@ -727,6 +739,25 @@ def drawPlotWithParameterInGui(xArray:list,
                                picWidth:str,
                                picHeight:str,
                                picDPI:str):
+
+    # xNoNoneArray, yNoNoneArray = handlerUnlegalData(dataDictList[self.XComboBox.currentIndex()],
+    #                                                 dataDictList[self.y1ComboBox.currentIndex()])
+    # drawSinglePlotWithParameterInGui(xNoNoneArray,
+    #                                  myStringUtil.superscriptNumberWithString(self.XTitleTextEdit.toPlainText()),
+    #                                  float(self.MaxXLineEdit.text()),
+    #                                  float(self.MinXLineEdit.text()),
+    #                                  float(self.XStepLineEdit.text()),
+    #                                  yNoNoneArray,
+    #                                  myStringUtil.superscriptNumberWithString(self.y1TitleTextEdit.toPlainText()),
+    #                                  float(self.y1MaxYLineEdit.text()),
+    #                                  float(self.y1MinYLineEdit.text()),
+    #                                  float(self.y1StepLineEdit.text()),
+    #                                  self.currentLineStyle(self.y1LineTypeComboBox.currentIndex()),
+    #                                  self.y1LineWidthDoubleSpinBox.text(),
+    #                                  str(self.y1LineColorPushButton.text()),
+    #                                  self.widthLineEdit.text(),
+    #                                  self.heightLineEdit.text(),
+    #                                  self.dpitLineEdit.text())
     global figLi
     global newYDataList
     figList.clear()
