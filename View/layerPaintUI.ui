@@ -221,7 +221,7 @@ border: 1px solid #000</string>
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>C:/Users/18637/.designer/uisource/save.png</normaloff>C:/Users/18637/.designer/uisource/save.png</iconset>
+             <normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/save.png</normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/save.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -731,7 +731,7 @@ border: 1px solid #000</string>
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>C:/Users/18637/.designer/uisource/preview.png</normaloff>C:/Users/18637/.designer/uisource/preview.png</iconset>
+             <normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/preview.png</normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/preview.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -808,11 +808,11 @@ color:#000;
 border: 1px solid #000</string>
            </property>
            <property name="text">
-            <string>导 入 数 据</string>
+            <string>导入数据</string>
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>C:/Users/18637/.designer/uisource/importData.png</normaloff>C:/Users/18637/.designer/uisource/importData.png</iconset>
+             <normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/importData.png</normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/importData.png</iconset>
            </property>
            <property name="iconSize">
             <size>

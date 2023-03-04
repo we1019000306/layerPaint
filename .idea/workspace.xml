@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54e497ed-ac45-4e85-a1d3-cff066147e5e" name="默认更改列表" comment="" />
+    <list default="true" id="54e497ed-ac45-4e85-a1d3-cff066147e5e" name="默认更改列表" comment="">
+      <change beforePath="$PROJECT_DIR$/View/layerPaintUI.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

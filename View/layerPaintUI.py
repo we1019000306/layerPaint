@@ -106,7 +106,7 @@ class Ui_MainWindow(object):
 "color:#000;\n"
 "border: 1px solid #000")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:/Users/18637/.designer/uisource/save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../../../../.designer/backup/C:/Users/18637/.designer/uisource/save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.savePushButton.setIcon(icon)
         self.savePushButton.setIconSize(QtCore.QSize(0, 0))
         self.savePushButton.setCheckable(False)
@@ -329,7 +329,7 @@ class Ui_MainWindow(object):
 "color:#000;\n"
 "border: 1px solid #000")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("C:/Users/18637/.designer/uisource/preview.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("../../../../.designer/backup/C:/Users/18637/.designer/uisource/preview.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.previewPushButton.setIcon(icon1)
         self.previewPushButton.setIconSize(QtCore.QSize(0, 0))
         self.previewPushButton.setAutoDefault(False)
@@ -366,7 +366,7 @@ class Ui_MainWindow(object):
 "color:#000;\n"
 "border: 1px solid #000")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("C:/Users/18637/.designer/uisource/importData.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("../../../../.designer/backup/C:/Users/18637/.designer/uisource/importData.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.selectFileButton.setIcon(icon2)
         self.selectFileButton.setIconSize(QtCore.QSize(0, 0))
         self.selectFileButton.setAutoDefault(False)
