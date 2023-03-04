@@ -143,24 +143,39 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
             # self.y1LineColorPushButton.setText('#000000')
             # self.y1LineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
 
-            if len(newYDataList) > 0 :
+
+
+
+
+
+            # if 0 < len(dataDictKey):
+            self.getDataFromTableWidget()
+            if len(newYDataList) > 0 and len(dataDictList) > 0:
                 # self.XComboBox.addItem('x轴')
                 self.XComboBox.clear()
                 self.XComboBox.addItems(tableHeaderList)
                 self.XComboBox.setCurrentIndex(0)
+                self.adaptXEdit()
+                self.adaptXTitle()
                 for i in newYDataList:
                     i[1].clear()
                     i[1].addItems(tableHeaderList)
+                    i[2].setPlainText(i[1].currentText())
                     i[3].setCurrentIndex(1)
                     i[4].setValue(1.0)
                     if i[5].text() == '连线颜色':
                         i[5].setText('#000000')
                         i[5].setStyleSheet('QWidget {background-color:#000000}')
-
-
-
-            if 0 < len(dataDictKey):
-                self.getDataFromTableWidget()
+                    yArray = dataDictList[i[1].currentIndex()]
+                    yFloatArray = []
+                    for m in yArray:
+                        yFloatArray.append(float(m))
+                    yMax = float(max(yFloatArray))
+                    yMin = float(min(yFloatArray))
+                    yStep = myArangeUtil.caculateUnitStep(yMax, yMin)
+                    i[6].setText(str(yMax))
+                    i[7].setText(str(yMin))
+                    i[8].setText(str(yStep))
                 # print(dataDictList[self.XComboBox.currentIndex()])
                 # print(dataDictList[self.y1ComboBox.currentIndex()])
                 # print(self.y1LineColorPushButton.text())
@@ -177,10 +192,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                 #     yDictList.append(i)
             # self.XComboBox.adjustSize()
             # self.y1ComboBox.adjustSize()
-            self.adaptXEdit()
-            self.adaptYEdit()
-            self.adaptXTitle()
-            self.adaptYTitle()
+
             #图片名称
             #self.pictureNameLineEdit.setText()
             QApplication.processEvents()
