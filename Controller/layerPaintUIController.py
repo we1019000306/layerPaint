@@ -12,7 +12,7 @@ from PyQt5.QtWidgets import QApplication, QFileDialog, QTableWidgetItem, QColorD
 from PyQt5.Qt import QThread,QMutex,pyqtSignal
 import time
 from PyQt5 import QtCore, QtWidgets,QtGui
-
+from matplotlib import gridspec
 
 from LMYUntils.myStringUtil import getImgUrl
 from View.layerPaintUI import Ui_MainWindow
@@ -294,7 +294,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                    previewDialogController.previewDialog.resizeDialog(pixmap.size().width(), pixmap.size().height())
                    previewDialogController.previewDialog.setPreviewImg(pixmap)
                    previewDialogController.previewDialog.show()
-                   QMessageBox.information(MainWindow,'!!!!','~~~~~~~~~')
+                   # QMessageBox.information(MainWindow,'!!!!','~~~~~~~~~')
                else:
                    #绘制单图模式！！！
                    drawSinglePlotWithParameterInGui()
@@ -747,49 +747,67 @@ def handlerUnlegalData(xArray:list,
 def drawSinglePlotWithParameterInGui():
     global xDataList
     global newYDataList
-    global figLi
+    global figList
 
     figList.clear()
-    #plt.figure(figsize=(float(picWidth)/float(picDPI), float(picHeight)/float(picDPI)), dpi=float(picDPI))
-    #plt.figure(dpi=float(picDPI))
-    plt.figure(figsize=(int(float(xDataList[0][6].text())/float(xDataList[0][8].text())),
+    fig = plt.figure(figsize=(int(float(xDataList[0][6].text())/float(xDataList[0][8].text())),
                         int(float(xDataList[0][7].text())/float(xDataList[0][8].text()))),
-               dpi=int(xDataList[0][8].text()))
-
+               dpi=int(xDataList[0][8].text()))  # 指定画布大小
     plt.rcParams['font.sans-serif'] = ['SimHei']
     plt.rcParams['axes.unicode_minus'] = False
+    plt.tight_layout
+    grid = gridspec.GridSpec(1, 1)  # 指定这个画布上就一个图
+    # 绘制价格走势图
+    ax = fig.add_subplot(grid[0, 0])  # 多子图时可以修改
+    # ax.axis('equal')
+    #plt.figure(figsize=(float(picWidth)/float(picDPI), float(picHeight)/float(picDPI)), dpi=float(picDPI))
+    #plt.figure(dpi=float(picDPI))
+    # plt.subplot(1, 1, 1)
+
+
+
+
     # plt.rcParams['font.size'] = 20  # 设置字体大小
-
-
-
-
-    plt.subplot(1,1,1)
-
     #titleTextEdit富文本设置坐标轴名称
-    plt.xlabel(xlabel=xDataList[0][2].toPlainText())
-    plt.xticks(np.arange(0,
+    ax.set_xlabel(xlabel=xDataList[0][2].toPlainText())
+    ax.set_xticks(np.arange(0,
                          (float(xDataList[0][3].text()) + myArangeUtil.caculateUnitStep(float(xDataList[0][3].text()), float(xDataList[0][4].text()))),
                          step=float(xDataList[0][5].text())),
                np.arange(0, (float(xDataList[0][3].text()) + myArangeUtil.caculateUnitStep(float(xDataList[0][3].text()), float(xDataList[0][4].text()))),
                          step=float(xDataList[0][5].text())))
+
+    ax.get_yaxis().set_visible(False)
+    n = 0
     for i in newYDataList:
+
         xNoNoneArray, yNoNoneArray = handlerUnlegalData(dataDictList[xDataList[0][1].currentIndex()],
                                                         dataDictList[i[1].currentIndex()])
         x = np.array(xNoNoneArray)
         y = np.array(yNoNoneArray)
-        plt.yticks(np.arange(0,
+        axNew = ax.twinx()
+        axNew.set_yticks(np.arange(0,
                              float(i[6].text()) + myArangeUtil.caculateUnitStep(float(i[6].text()), float(i[7].text())),
                              step=float(i[8].text())),
                    np.arange(0,
                              float(i[6].text()) + myArangeUtil.caculateUnitStep(float(i[6].text()), float(i[7].text())),
                              step=float(i[8].text())))
-        plt.ylabel(ylabel=i[2].toPlainText())
-        plt.plot(x,
-                 y,
-                 color=i[5].text(),
-                 linewidth=i[4].text(),
-                 linestyle=currentLineStyle(i[3].currentIndex()))
-
+        # axNew.set_ylabel(ylabel=i[2].toPlainText())
+        axNew.tick_params(direction='in',width=1,length=4,colors = i[5].text())
+        axNew.spines['right'].set_position(('data',-n*float(xDataList[0][5].text())/2))
+        axNew.spines['right'].set_color(i[5].text())
+        axNew.set_ylim(0)
+        axNew.set_xlim(0)
+        axNew.spines['top'].set_visible(False)
+        #axNew.spines['right'].set_visible(False)
+        axNew.plot(x,
+                y,
+                color=i[5].text(),
+                linewidth=i[4].text(),
+                linestyle=currentLineStyle(i[3].currentIndex()),
+                label = i[1].currentText())
+        # axNew.legend(loc='upper left',)
+        # axNew.get_yaxis().set_visible(False)
+        n += 1
     # plt.yticks(np.arange(0,
     #                      (float(newYDataList[0][6].text()) + myArangeUtil.caculateUnitStep(
     #                          float(newYDataList[0][6].text()), float(newYDataList[0][7].text()))),
@@ -804,14 +822,17 @@ def drawSinglePlotWithParameterInGui():
 
 
 
-    ax = plt.gca()
+    # ax = plt.gca()
+    # ax.get_yaxis().set_visible(False)
     ax.set_ylim(0)
     ax.set_xlim(0)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
+    # ax.spines['left'].set_visible(False)
+    # ax.spines['bottom'].set_visible(False)
     #ax.spines['bottom'].set_visible(False)
-    ax.xaxis.set_ticks_position('bottom')
-    ax.yaxis.set_ticks_position('left')  # 将y轴的位置设置在右左边
+    # ax.xaxis.set_ticks_position('bottom')
+    # ax.yaxis.set_ticks_position('left')  # 将y轴的位置设置在左边
     #ax.invert_yaxis()  # y轴反向
     #ax.invert_xaxis()
     #plt.suptitle("RUNOOB subplot Test")
