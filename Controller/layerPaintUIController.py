@@ -29,12 +29,14 @@ dataDictList:list = []
 dataDictKey:list = []
 figList:list = []
 newYDataList:list = []
+xDataList:list = []
 tableHeaderList:list = []
 pd.set_option('display.max_columns', None)   #显示完整的列
 pd.set_option('display.max_rows', None)  #显示完整的行
 class window(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self):
         global newYDataList
+        global xDataList
         super().__init__()
         self.setupUi(self)
         self.y1LineColorPushButton.clicked.connect(self.lineColorPushButtonClicked)
@@ -42,10 +44,16 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         self.selectFileButton.clicked.connect(self.loadBaseData)
         self.previewPushButton.clicked.connect(self.previewButtonClicked)
         self.savePushButton.clicked.connect(self.savePushButtonClicked)
-        self.XComboBox.activated[str].connect(self.XComboBoxValueChanged)
+        self.xComboBox.activated[str].connect(self.XComboBoxValueChanged)
         self.y1ComboBox.activated[str].connect(self.YComboBoxValueChanged)
         self.addYpushButton.clicked.connect(self.addYDataButtonClicked)
         self.deleteYPushButton.clicked.connect(self.deleteYDataButtonClicked)
+        xDataList.append([self.xLabel,
+                             self.xComboBox,
+                             self.xTitleTextEdit,
+                             self.xMaxXLineEdit,
+                             self.xMinXLineEdit,
+                             self.xStepLineEdit])
         newYDataList.append([self.y1Label,
                              self.y1ComboBox,
                              self.y1TitleTextEdit,
@@ -55,6 +63,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                              self.y1MaxYLineEdit,
                              self.y1MinYLineEdit,
                              self.y1StepLineEdit])
+
         # self.mainGridLayout.setContentsMargins(6, 10, 6, 10)
 
         # np数组生成的图
@@ -143,18 +152,13 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
             # self.y1LineColorPushButton.setText('#000000')
             # self.y1LineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
 
-
-
-
-
-
             # if 0 < len(dataDictKey):
             self.getDataFromTableWidget()
             if len(newYDataList) > 0 and len(dataDictList) > 0:
                 # self.XComboBox.addItem('x轴')
-                self.XComboBox.clear()
-                self.XComboBox.addItems(tableHeaderList)
-                self.XComboBox.setCurrentIndex(0)
+                xDataList[0][1].clear()
+                xDataList[0][1].addItems(tableHeaderList)
+                xDataList[0][1].setCurrentIndex(0)
                 self.adaptXEdit()
                 self.adaptXTitle()
                 for i in newYDataList:
@@ -262,8 +266,8 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                                        '警告!!!','dpi至少大于10!!!')
            else:
                print(dataDictList)
-               xNoNoneArray,yNoNoneArray = handlerUnlegalData(dataDictList[self.XComboBox.currentIndex()],
-                                  dataDictList[self.y1ComboBox.currentIndex()])
+               xNoNoneArray,yNoNoneArray = handlerUnlegalData(dataDictList[[xDataList[0][1]].currentIndex()],
+                                  dataDictList[newYDataList[0][1].currentIndex()])
                # xMax = float(max(xNoNoneArray))
                # xMin = float(min(xNoNoneArray))
                # yMax = float(max(yNoNoneArray))
@@ -633,8 +637,9 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                                     '你还未绘制图片！！')
 
     def adaptXEdit(self):
+        global xDataList
         if len(dataDictList) > 0:
-            xArray = dataDictList[self.XComboBox.currentIndex()]
+            xArray = dataDictList[xDataList[0][1].currentIndex()]
             xFloatArray = []
             for n in xArray:
                 xFloatArray.append(float(n))
@@ -642,9 +647,9 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
             xMin = float(min(xFloatArray))
             print(str(xMax) + '!!!!!!!!!!!!!!!!!!')
             xStep = myArangeUtil.caculateUnitStep(xMax, xMin)
-            self.MaxXLineEdit.setText(str(xMax))
-            self.MinXLineEdit.setText(str(xMin))
-            self.XStepLineEdit.setText(str(xStep))
+            xDataList[0][3].setText(str(xMax))
+            xDataList[0][4].setText(str(xMin))
+            xDataList[0][5].setText(str(xStep))
         else:
             QMessageBox.information(MainWindow, '警告！！！', '没有可用数据源！！！')
 
@@ -696,7 +701,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
             QMessageBox.information(MainWindow,'警告！！！','没有可用数据源！！！')
 
     def adaptXTitle(self):
-        self.XTitleTextEdit.setPlainText(self.XComboBox.currentText())
+        xDataList[0][2].setPlainText(xDataList[0][1].currentText())
 
     def adaptYTitle(self):
         global newYDataList

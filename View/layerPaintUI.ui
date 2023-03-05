@@ -221,7 +221,7 @@ border: 1px solid #000</string>
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/save.png</normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/save.png</iconset>
+             <normaloff>../../../.designer/backup/C:/Users/18637/.designer/uisource/save.png</normaloff>../../../.designer/backup/C:/Users/18637/.designer/uisource/save.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -363,7 +363,7 @@ border: 0px solid #000</string>
           </widget>
          </item>
          <item row="4" column="2">
-          <widget class="QTextEdit" name="XTitleTextEdit">
+          <widget class="QTextEdit" name="xTitleTextEdit">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -593,7 +593,7 @@ border: 0px solid #000</string>
           </widget>
          </item>
          <item row="4" column="3">
-          <widget class="QLabel" name="label_8">
+          <widget class="QLabel" name="lineTypeLabel">
            <property name="minimumSize">
             <size>
              <width>40</width>
@@ -637,7 +637,7 @@ border: 1px solid #000</string>
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QComboBox" name="XComboBox">
+          <widget class="QComboBox" name="xComboBox">
            <property name="enabled">
             <bool>true</bool>
            </property>
@@ -731,7 +731,7 @@ border: 1px solid #000</string>
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/preview.png</normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/preview.png</iconset>
+             <normaloff>../../../.designer/backup/C:/Users/18637/.designer/uisource/preview.png</normaloff>../../../.designer/backup/C:/Users/18637/.designer/uisource/preview.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -812,7 +812,7 @@ border: 1px solid #000</string>
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/importData.png</normaloff>../../../../.designer/backup/C:/Users/18637/.designer/uisource/importData.png</iconset>
+             <normaloff>../../../.designer/backup/C:/Users/18637/.designer/uisource/importData.png</normaloff>../../../.designer/backup/C:/Users/18637/.designer/uisource/importData.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -876,7 +876,7 @@ border: 1px solid #000</string>
           </widget>
          </item>
          <item row="4" column="6">
-          <widget class="QLineEdit" name="MaxXLineEdit">
+          <widget class="QLineEdit" name="xMaxXLineEdit">
            <property name="minimumSize">
             <size>
              <width>40</width>
@@ -926,7 +926,7 @@ border: 1px solid #000</string>
           </widget>
          </item>
          <item row="4" column="7">
-          <widget class="QLineEdit" name="MinXLineEdit">
+          <widget class="QLineEdit" name="xMinXLineEdit">
            <property name="minimumSize">
             <size>
              <width>40</width>
@@ -983,7 +983,7 @@ border: 1px solid #000</string>
           </widget>
          </item>
          <item row="4" column="8">
-          <widget class="QLineEdit" name="XStepLineEdit">
+          <widget class="QLineEdit" name="xStepLineEdit">
            <property name="minimumSize">
             <size>
              <width>40</width>
@@ -1129,7 +1129,7 @@ background-color:#FFF</string>
      <x>0</x>
      <y>0</y>
      <width>1046</width>
-     <height>24</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menulayerPaint">
