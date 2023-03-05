@@ -131,7 +131,7 @@ border: 0px solid #000</string>
            </property>
            <property name="minimumSize">
             <size>
-             <width>120</width>
+             <width>100</width>
              <height>30</height>
             </size>
            </property>
@@ -261,9 +261,15 @@ border: 1px solid #000</string>
          </item>
          <item row="5" column="3">
           <widget class="QComboBox" name="y1LineTypeComboBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
-             <width>40</width>
+             <width>120</width>
              <height>30</height>
             </size>
            </property>
@@ -273,11 +279,6 @@ border-radius:5px;
 color:#000;
 border: 1px solid #000</string>
            </property>
-           <item>
-            <property name="text">
-             <string extracomment="连线类型">线型</string>
-            </property>
-           </item>
            <item>
             <property name="text">
              <string>实线 -</string>
@@ -594,15 +595,21 @@ border: 0px solid #000</string>
          </item>
          <item row="4" column="3">
           <widget class="QLabel" name="lineTypeLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
-             <width>40</width>
+             <width>120</width>
              <height>30</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>80</width>
+             <width>120</width>
              <height>30</height>
             </size>
            </property>
@@ -754,7 +761,7 @@ border: 1px solid #000</string>
           <widget class="QLineEdit" name="pictureNameLineEdit">
            <property name="minimumSize">
             <size>
-             <width>0</width>
+             <width>120</width>
              <height>30</height>
             </size>
            </property>
@@ -1039,6 +1046,13 @@ border: 1px solid #000</string>
            </property>
           </widget>
          </item>
+         <item row="4" column="5">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>线 色</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item row="1" column="1">
@@ -1129,7 +1143,7 @@ background-color:#FFF</string>
      <x>0</x>
      <y>0</y>
      <width>1046</width>
-     <height>29</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menulayerPaint">

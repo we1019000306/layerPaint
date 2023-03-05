@@ -48,12 +48,20 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         self.y1ComboBox.activated[str].connect(self.YComboBoxValueChanged)
         self.addYpushButton.clicked.connect(self.addYDataButtonClicked)
         self.deleteYPushButton.clicked.connect(self.deleteYDataButtonClicked)
+        self.y1LineColorPushButton.setText('#000000')
+        self.y1LineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
+        self.y1LineWidthDoubleSpinBox.setValue(1.0)
+
         xDataList.append([self.xLabel,
                              self.xComboBox,
                              self.xTitleTextEdit,
                              self.xMaxXLineEdit,
                              self.xMinXLineEdit,
-                             self.xStepLineEdit])
+                             self.xStepLineEdit,
+                             self.widthLineEdit,
+                             self.heightLineEdit,
+                             self.dpitLineEdit,
+                             self.pictureNameLineEdit])
         newYDataList.append([self.y1Label,
                              self.y1ComboBox,
                              self.y1TitleTextEdit,
@@ -145,13 +153,6 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                     # 刷新界面命令：
             #self.XComboBox.addItems(['1', '2', '3'])
             tableHeaderList = myStringUtil.deleteBlankStringWithList(input_table_header)
-            # self.XComboBox.addItems(tableHeaderList)
-            # self.y1ComboBox.addItems(tableHeaderList)
-            # self.y1LineTypeComboBox.setCurrentIndex(1)
-            # self.y1LineWidthDoubleSpinBox.setValue(1.0)
-            # self.y1LineColorPushButton.setText('#000000')
-            # self.y1LineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
-
             # if 0 < len(dataDictKey):
             self.getDataFromTableWidget()
             if len(newYDataList) > 0 and len(dataDictList) > 0:
@@ -165,7 +166,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                     i[1].clear()
                     i[1].addItems(tableHeaderList)
                     i[2].setPlainText(i[1].currentText())
-                    i[3].setCurrentIndex(1)
+                    i[3].setCurrentIndex(0)
                     i[4].setValue(1.0)
                     if i[5].text() == '连线颜色':
                         i[5].setText('#000000')
@@ -266,7 +267,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                                        '警告!!!','dpi至少大于10!!!')
            else:
                print(dataDictList)
-               xNoNoneArray,yNoNoneArray = handlerUnlegalData(dataDictList[[xDataList[0][1]].currentIndex()],
+               xNoNoneArray,yNoNoneArray = handlerUnlegalData(dataDictList[xDataList[0][1].currentIndex()],
                                   dataDictList[newYDataList[0][1].currentIndex()])
                # xMax = float(max(xNoNoneArray))
                # xMin = float(min(xNoNoneArray))
@@ -279,26 +280,26 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                if len(newYDataList) > 1:
                    # for i in newYDataList:
                    #     y = np.array()
-                    QMessageBox.information(MainWindow,'!!!!','~~~~~~~~~')
+                   drawSinglePlotWithParameterInGui()
+                   # 从本地读图
+                   pixmap = QPixmap('preview.png')  # 按指定路径找到图片
+                   print(pixmap.size())
+                   if pixmap:
+                       print('!!!!!!!!!!')
+
+                   else:
+                       pass
+
+                   previewDialogController.previewDialog = previewDialog()
+                   previewDialogController.previewDialog.resizeDialog(pixmap.size().width(), pixmap.size().height())
+                   previewDialogController.previewDialog.setPreviewImg(pixmap)
+                   previewDialogController.previewDialog.show()
+                   QMessageBox.information(MainWindow,'!!!!','~~~~~~~~~')
                else:
-                   drawSinglePlotWithParameterInGui(xNoNoneArray,
-                                              myStringUtil.superscriptNumberWithString(self.XTitleTextEdit.toPlainText()),
-                                              float(self.MaxXLineEdit.text()),
-                                              float(self.MinXLineEdit.text()),
-                                              float(self.XStepLineEdit.text()),
-                                              yNoNoneArray,
-                                              myStringUtil.superscriptNumberWithString(self.y1TitleTextEdit.toPlainText()),
-                                              float(self.y1MaxYLineEdit.text()),
-                                              float(self.y1MinYLineEdit.text()),
-                                              float(self.y1StepLineEdit.text()),
-                                              self.currentLineStyle(self.y1LineTypeComboBox.currentIndex()),
-                                              self.y1LineWidthDoubleSpinBox.text(),
-                                              str(self.y1LineColorPushButton.text()),
-                                              self.widthLineEdit.text(),
-                                              self.heightLineEdit.text(),
-                                              self.dpitLineEdit.text())
+                   #绘制单图模式！！！
+                   drawSinglePlotWithParameterInGui()
                     # 从本地读图
-                   pixmap = QPixmap(os.getcwd() + '\\preview.png')  # 按指定路径找到图片
+                   pixmap = QPixmap('preview.png')  # 按指定路径找到图片
                    print(pixmap.size())
                    if pixmap:
                      print('!!!!!!!!!!')
@@ -423,7 +424,6 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         yLineTypeComboBox.setMinimumSize(QtCore.QSize(120, 30))
         yLineTypeComboBox.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToMinimumContentsLength)
         yLineTypeComboBox.setMinimumContentsLength(10)
-        yLineTypeComboBox.addItem("线型")
         yLineTypeComboBox.addItem("实线 -")
         yLineTypeComboBox.addItem("点虚线 :")
         yLineTypeComboBox.addItem("破折线 --")
@@ -433,6 +433,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
 
         #yLineWidthDoubleSpinBox
         yLineWidthDoubleSpinBox = QtWidgets.QDoubleSpinBox(QtWidgets.QFrame(self.y1LineWidthDoubleSpinBox))
+        yLineWidthDoubleSpinBox.setValue(1.0)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -462,7 +463,9 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                                                  "border: 1px solid #000")
         yLineColorPushButton.setObjectName('y' + currentIndexStr + 'LineColorPushButton')
         print(yLineColorPushButton.objectName())
-        yLineColorPushButton.setText('连线颜色')
+        # yLineColorPushButton.setText('连线颜色')
+        yLineColorPushButton.setText('#000000')
+        yLineColorPushButton.setStyleSheet('QWidget {background-color:#000000}')
         yLineColorPushButton.clicked.connect(self.lineColorPushButtonClicked)
         self.mainGridLayout.addWidget(yLineColorPushButton, len(newYDataList) + 1 + 6, 5, 1, 1)
 
@@ -507,7 +510,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
         self.mainGridLayout.addWidget(yStepLineEdit, len(newYDataList) + 1 + 6, 8, 1, 1)
 
 
-        self.mainGridLayout.setContentsMargins(len(newYDataList) + 1 + 7, 0, 1, 1)
+        # self.mainGridLayout.setContentsMargins(1, 1, 1, 1)
         self.mainGridLayout.addWidget(self.addYpushButton, len(newYDataList) + 1 + 6 + 2, 0, 1, 1)
         self.mainGridLayout.addWidget(self.deleteYPushButton, len(newYDataList) + 1 + 6 + 3, 0, 1, 1)
         newYDataList.append([yLabel,
@@ -554,26 +557,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
             self.sender().setStyleSheet('QWidget {background-color:%s}' % col.name())
             self.sender().setText(col.name())
 
-    def currentLineStyle(self,currentIndex:int)->str:
-        # 'solid'(默认) '-' 实线
-        # 'dotted' ':' 点虚线
-        # 'dashed' '--' 破折线
-        # 'dashdot' '-.' 点划线
-        # 'None' '' 或 ' ' 不画线
-        if currentIndex == 0:
-            return 'None'
-        elif currentIndex == 1:
-            return 'solid'
-        elif currentIndex == 2:
-            return 'dotted'
-        elif currentIndex == 3:
-            return 'dashed'
-        elif currentIndex == 4:
-            return 'dashdot'
-        elif currentIndex == 5:
-            return 'None'
-        else:
-            return 'solid'
+
 
     def getDataFromTableWidget(self):
         global dataDictKey
@@ -711,6 +695,26 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                 i[2].setPlainText(i[1].currentText())
 
 
+def currentLineStyle(currentIndex:int)->str:
+    # 'solid'(默认) '-' 实线
+    # 'dotted' ':' 点虚线
+    # 'dashed' '--' 破折线
+    # 'dashdot' '-.' 点划线
+    # 'None' '' 或 ' ' 不画线
+    if currentIndex == 0:
+        return 'solid'
+    elif currentIndex == 1:
+        return 'dotted'
+    elif currentIndex == 2:
+        return 'dashed'
+    elif currentIndex == 3:
+        return 'dashdot'
+    elif currentIndex == 4:
+        return 'None'
+    elif currentIndex == 5:
+        return 'solid'
+
+
 def handlerUnlegalData(xArray:list,
                        yArray:list):
     xNoNoneArray = []
@@ -740,82 +744,66 @@ def handlerUnlegalData(xArray:list,
     return xNoNoneArray,yNoNoneArray
 
 
-def drawSinglePlotWithParameterInGui(xArray:list,
-                               xTitle:str,
-                               xMax:float,
-                               xMin:float,
-                               xStep:float,
-                               yArray:list,
-                               yTitle:str,
-                               yMax:float,
-                               yMin:float,
-                               yStep:float,
-                               lineStyle:str,
-                               lineWidth:str,
-                               lineColor:str,
-                               picWidth:str,
-                               picHeight:str,
-                               picDPI:str):
-
-    # xNoNoneArray, yNoNoneArray = handlerUnlegalData(dataDictList[self.XComboBox.currentIndex()],
-    #                                                 dataDictList[self.y1ComboBox.currentIndex()])
-    # drawSinglePlotWithParameterInGui(xNoNoneArray,
-    #                                  myStringUtil.superscriptNumberWithString(self.XTitleTextEdit.toPlainText()),
-    #                                  float(self.MaxXLineEdit.text()),
-    #                                  float(self.MinXLineEdit.text()),
-    #                                  float(self.XStepLineEdit.text()),
-    #                                  yNoNoneArray,
-    #                                  myStringUtil.superscriptNumberWithString(self.y1TitleTextEdit.toPlainText()),
-    #                                  float(self.y1MaxYLineEdit.text()),
-    #                                  float(self.y1MinYLineEdit.text()),
-    #                                  float(self.y1StepLineEdit.text()),
-    #                                  self.currentLineStyle(self.y1LineTypeComboBox.currentIndex()),
-    #                                  self.y1LineWidthDoubleSpinBox.text(),
-    #                                  str(self.y1LineColorPushButton.text()),
-    #                                  self.widthLineEdit.text(),
-    #                                  self.heightLineEdit.text(),
-    #                                  self.dpitLineEdit.text())
-    global figLi
+def drawSinglePlotWithParameterInGui():
+    global xDataList
     global newYDataList
+    global figLi
+
     figList.clear()
     #plt.figure(figsize=(float(picWidth)/float(picDPI), float(picHeight)/float(picDPI)), dpi=float(picDPI))
     #plt.figure(dpi=float(picDPI))
-    plt.figure(figsize=(int(float(picWidth)/float(picDPI)),
-                        int(float(picHeight)/float(picDPI))),
-               dpi=int(picDPI))
+    plt.figure(figsize=(int(float(xDataList[0][6].text())/float(xDataList[0][8].text())),
+                        int(float(xDataList[0][7].text())/float(xDataList[0][8].text()))),
+               dpi=int(xDataList[0][8].text()))
 
     plt.rcParams['font.sans-serif'] = ['SimHei']
     plt.rcParams['axes.unicode_minus'] = False
     # plt.rcParams['font.size'] = 20  # 设置字体大小
 
-    x = np.array(xArray)
-    y = np.array(yArray)
+
+
 
     plt.subplot(1,1,1)
-    plt.plot(x,
-             y,
-             color=lineColor,
-             linewidth = lineWidth,
-             linestyle = lineStyle)
 
+    #titleTextEdit富文本设置坐标轴名称
+    plt.xlabel(xlabel=xDataList[0][2].toPlainText())
     plt.xticks(np.arange(0,
-                         (xMax + myArangeUtil.caculateUnitStep(xMax, xMin)),
-                         step=xStep),
-               np.arange(0, (xMax + myArangeUtil.caculateUnitStep(xMax, xMin)),
-                         step=xStep))
+                         (float(xDataList[0][3].text()) + myArangeUtil.caculateUnitStep(float(xDataList[0][3].text()), float(xDataList[0][4].text()))),
+                         step=float(xDataList[0][5].text())),
+               np.arange(0, (float(xDataList[0][3].text()) + myArangeUtil.caculateUnitStep(float(xDataList[0][3].text()), float(xDataList[0][4].text()))),
+                         step=float(xDataList[0][5].text())))
+    for i in newYDataList:
+        xNoNoneArray, yNoNoneArray = handlerUnlegalData(dataDictList[xDataList[0][1].currentIndex()],
+                                                        dataDictList[i[1].currentIndex()])
+        x = np.array(xNoNoneArray)
+        y = np.array(yNoNoneArray)
+        plt.yticks(np.arange(0,
+                             float(i[6].text()) + myArangeUtil.caculateUnitStep(float(i[6].text()), float(i[7].text())),
+                             step=float(i[8].text())),
+                   np.arange(0,
+                             float(i[6].text()) + myArangeUtil.caculateUnitStep(float(i[6].text()), float(i[7].text())),
+                             step=float(i[8].text())))
+        plt.ylabel(ylabel=i[2].toPlainText())
+        plt.plot(x,
+                 y,
+                 color=i[5].text(),
+                 linewidth=i[4].text(),
+                 linestyle=currentLineStyle(i[3].currentIndex()))
+
+    # plt.yticks(np.arange(0,
+    #                      (float(newYDataList[0][6].text()) + myArangeUtil.caculateUnitStep(
+    #                          float(newYDataList[0][6].text()), float(newYDataList[0][7].text()))),
+    #                      step=float(newYDataList[0][8].text())),
+    #            np.arange(0, (float(newYDataList[0][6].text()) + myArangeUtil.caculateUnitStep(
+    #                float(newYDataList[0][6].text()), float(newYDataList[0][7].text()))),
+    #                      step=float(newYDataList[0][8].text())))
     #plt.yticks(np.linspace(0,maxY,yUnitNum))
-    plt.yticks(np.arange(0,
-                         (yMax + myArangeUtil.caculateUnitStep(yMax,yMin)),
-                         step=yStep),
-               np.arange(0,
-                         (yMax + myArangeUtil.caculateUnitStep(yMax,yMin)),
-                         step=yStep))
+
     #plt.xticks(rotation = '90')
     #plt.yticks(rotation='90')
-    print(xTitle)
-    print(yTitle)
-    plt.xlabel(xlabel=xTitle)
-    plt.ylabel(ylabel=yTitle)
+
+
+
     ax = plt.gca()
     ax.set_ylim(0)
     ax.set_xlim(0)
@@ -830,7 +818,7 @@ def drawSinglePlotWithParameterInGui(xArray:list,
     fig = plt.gcf()
     figList.append(fig)
 
-    plt.savefig(os.getcwd()+'\\'+'preview.png')
+    plt.savefig('preview.png')
     #plt.scatter([-y for y in yArray], xArray)
     plt.show()
 
