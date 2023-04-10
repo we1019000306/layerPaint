@@ -13,6 +13,7 @@ from PyQt5.Qt import QThread,QMutex,pyqtSignal
 import time
 from PyQt5 import QtCore, QtWidgets,QtGui
 from matplotlib import gridspec
+from matplotlib.legend import Legend
 
 from LMYUntils.myStringUtil import getImgUrl
 from View.layerPaintUI import Ui_MainWindow
@@ -280,7 +281,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                if len(newYDataList) > 1:
                    # for i in newYDataList:
                    #     y = np.array()
-                   drawSinglePlotWithParameterInGui()
+                   drawTwinsXPlotWithParameterInGui()
                    # 从本地读图
                    pixmap = QPixmap('preview.png')  # 按指定路径找到图片
                    print(pixmap.size())
@@ -297,7 +298,7 @@ class window(QtWidgets.QMainWindow,Ui_MainWindow):
                    # QMessageBox.information(MainWindow,'!!!!','~~~~~~~~~')
                else:
                    #绘制单图模式！！！
-                   drawSinglePlotWithParameterInGui()
+                   drawTwinsXPlotWithParameterInGui()
                     # 从本地读图
                    pixmap = QPixmap('preview.png')  # 按指定路径找到图片
                    print(pixmap.size())
@@ -744,7 +745,7 @@ def handlerUnlegalData(xArray:list,
     return xNoNoneArray,yNoNoneArray
 
 
-def drawSinglePlotWithParameterInGui():
+def drawTwinsXPlotWithParameterInGui():
     global xDataList
     global newYDataList
     global figList
@@ -757,12 +758,9 @@ def drawSinglePlotWithParameterInGui():
     plt.rcParams['axes.unicode_minus'] = False
     plt.tight_layout
     grid = gridspec.GridSpec(1, 1)  # 指定这个画布上就一个图
-    # 绘制价格走势图
     ax = fig.add_subplot(grid[0, 0])  # 多子图时可以修改
     # ax.axis('equal')
-    #plt.figure(figsize=(float(picWidth)/float(picDPI), float(picHeight)/float(picDPI)), dpi=float(picDPI))
-    #plt.figure(dpi=float(picDPI))
-    # plt.subplot(1, 1, 1)
+
 
 
 
@@ -799,38 +797,27 @@ def drawSinglePlotWithParameterInGui():
         axNew.set_xlim(0)
         axNew.spines['top'].set_visible(False)
         #axNew.spines['right'].set_visible(False)
-        axNew.plot(x,
-                y,
-                color=i[5].text(),
-                linewidth=i[4].text(),
-                linestyle=currentLineStyle(i[3].currentIndex()),
-                label = i[1].currentText())
-        # axNew.legend(loc='upper left',)
-        # axNew.get_yaxis().set_visible(False)
+        p =axNew.plot(x,
+                     y,
+                     color=i[5].text(),
+                     linewidth=i[4].text(),
+                     linestyle=currentLineStyle(i[3].currentIndex()),
+                     label = i[1].currentText())
+        l1 = plt.legend(p, [i[1].currentText()], loc='upper left',bbox_to_anchor=(0.5,0.5,0.5*n,0.5*n))
+        plt.gca().add_artist(l1)
         n += 1
-    # plt.yticks(np.arange(0,
-    #                      (float(newYDataList[0][6].text()) + myArangeUtil.caculateUnitStep(
-    #                          float(newYDataList[0][6].text()), float(newYDataList[0][7].text()))),
-    #                      step=float(newYDataList[0][8].text())),
-    #            np.arange(0, (float(newYDataList[0][6].text()) + myArangeUtil.caculateUnitStep(
-    #                float(newYDataList[0][6].text()), float(newYDataList[0][7].text()))),
-    #                      step=float(newYDataList[0][8].text())))
-    #plt.yticks(np.linspace(0,maxY,yUnitNum))
-
+    #
+    # ax = plt.gca()
+    # ax.legend(['.-','-'],title=['label','label1'],loc='lower right',fontsize=12)
     #plt.xticks(rotation = '90')
     #plt.yticks(rotation='90')
-
-
-
-    # ax = plt.gca()
-    # ax.get_yaxis().set_visible(False)
+    # ax.legend()
+    # plt.legend(loc='lower right', fontsize=12, frameon=True, fancybox=True, framealpha=0.2, borderpad=0.3,ncol=1, markerfirst=True, markerscale=1, numpoints=1, handlelength=3.5)
     ax.set_ylim(0)
     ax.set_xlim(0)
     ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    # ax.spines['left'].set_visible(False)
-    # ax.spines['bottom'].set_visible(False)
-    #ax.spines['bottom'].set_visible(False)
+    # ax.spines['right'].set_visible(False)
+
     # ax.xaxis.set_ticks_position('bottom')
     # ax.yaxis.set_ticks_position('left')  # 将y轴的位置设置在左边
     #ax.invert_yaxis()  # y轴反向
